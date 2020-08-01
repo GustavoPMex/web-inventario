@@ -10341,7 +10341,9 @@ section.resume-section .resume-section-content {
   color: red;
 }
 
-
+.text-search{
+  font-size: 30px;
+}
 
 @media screen and (max-width: 400px) {
   .content-form{

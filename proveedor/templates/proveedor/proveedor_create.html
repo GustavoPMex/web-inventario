@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Agregar{% endblock %}
+
+{% block content %}
+<section class="resume-section">
+    <div class="resume-section-content">
+        <h1 class="mb-5 h1-resume-section">
+            Proveedores
+        </h1>
+
+        <div class="row w-100 mb-5 mx-auto justify-content-center">
+            <a href="{% url 'proveedor:index' %}" class="col-12 col-md-3 mx-1 mb-1  list-submenu">Lista</a>
+            <a href="{% url 'proveedor:create' %}" class="col-12 col-md-3 mx-1 mb-1 submenu-activate list-submenu">Agregar</a>
+        </div>
+
+        
+        <form method="post">
+            {%csrf_token%}
+            <div class="form-group">
+                <label class="label-form">Nombre*</label>
+                {{form.nombre}}
+            </div>
+
+            <div class="form-group">
+                <label class="label-form" for="exampleFormControlInput1">Descripción*</label>
+                {{form.descripcion}}  
+            </div>
+
+
+            <div class="form-group">
+                <label class="label-form">Telefono uno* </label>
+                {{form.telefono_uno}}
+            </div>
+
+            <div class="form-group">
+                <label class="label-form">Telefono dos  </label>
+                {{form.telefono_dos}}
+            </div>
+            
+            <div class="form-group">
+                <label class="label-form">Email*</label>
+                {{form.correo}}
+            </div>
+
+            <button type="submit" class="btn btn-success btn-form">Crear</button>
+        </form>
+    </div>
+</section>
+<hr class="m-0" />
+{% endblock %}

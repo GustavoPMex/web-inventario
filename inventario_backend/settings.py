@@ -37,10 +37,12 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'phone_field',
 ]
 
 PROJECT_APPS = [
     'core',
+    'proveedor',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
