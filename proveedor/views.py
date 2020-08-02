@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .forms import ProveedorForm
+from .forms import ProveedorForm,ProveedorModalForm
 from .models import ProveedorModel
 
 class ProveedorList(ListView):
@@ -43,4 +43,17 @@ class ProveedorCreate(CreateView):
     form_class = ProveedorForm
     template_name = 'proveedor/proveedor_create.html'
     
+    success_url = reverse_lazy('proveedor:index')
+
+
+class ProveedorUpdate(UpdateView):
+    model = ProveedorModel
+    form_class = ProveedorModalForm
+    context_object_name = 'obj'
+    template_name = 'proveedor/proveedor_update.html'
+    success_url = reverse_lazy('proveedor:index')
+
+class ProveedorDelete(DeleteView):
+    model = ProveedorModel
+    template_name = 'proveedor/includes/modal_delete.html'
     success_url = reverse_lazy('proveedor:index')

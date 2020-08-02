@@ -3,6 +3,8 @@
 {% block title %}Proveedores{% endblock %}
 
 {% block content %}
+{% include 'proveedor/includes/modal_update.html' %}
+
 <section class="resume-section">
     <div class="resume-section-content">
         <h1 class="mb-5 h1-resume-section">
@@ -51,8 +53,10 @@
                         </td>
                         <td>{{element.correo}}</td>
                         <td>
-                            <a href=""><i class="fas fa-pen-square icon-table-up"></i></a>
-                            <a href=""><i class="fas fa-trash-alt icon-table-del"></i></a>
+                            <!-- UPDATE -->
+                            <a onclick="return abrir_modal('{% url 'proveedor:update' element.id %}')" href="#"><i class="fas fa-pen-square icon-table-up"></i></a>
+                            <!-- DELETE -->
+                            <a onclick="return abrir_modal ('{% url 'proveedor:delete' element.id %}')" href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
                         </td>
                     </tr>
                 {% endfor %}
