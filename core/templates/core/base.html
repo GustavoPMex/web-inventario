@@ -31,8 +31,8 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="taller.html">Taller</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="servicios.html">Servicios</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="garantias.html">Garantias</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path|slice:':13' == '/proveedores/' %}select-menu{% endif %}"  href="{% url 'proveedor:index' %}">Proveedores</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="clientes.html">Clientes</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/proveedores/' %}select-menu{% endif %}"  href="{% url 'proveedor:index' %}">Proveedores</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/clientes/' %}select-menu{% endif %}" href="{% url 'cliente:index' %}">Clientes</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="personal.html">Personal</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="perfil_actual.html">Perfil actual</a></li>
                 </ul>

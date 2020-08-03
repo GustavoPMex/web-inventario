@@ -42,7 +42,8 @@ DJANGO_APPS = [
 
 PROJECT_APPS = [
     'core',
-    'proveedor',
+    'proveedor.apps.ProveedorConfig',
+    'cliente.apps.ClienteConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS

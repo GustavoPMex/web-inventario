@@ -1,23 +1,21 @@
 {% extends 'core/base.html' %}
 
-{% block title %}Proveedores{% endblock %}
+{% block title %}Clientes{% endblock %}
 
 {% block content %}
-{% include 'proveedor/includes/modal_update.html' %}
-
 <section class="resume-section">
     <div class="resume-section-content">
         <h1 class="mb-5 h1-resume-section">
-            Proveedores
+            Clientes
         </h1>
 
-        {% include 'proveedor/includes/submenu_proveedores.html' %}
+        {% include 'cliente/includes/submenu_clientes.html' %}
 
         <div class="row w-100 mx-auto mb-5 justify-content-center">
             <div class="col-12 col-lg-5  mt-5 mt-lg-2 text-center mt-3">
-                <form action="{% url 'proveedor:search' %}" method="GET">
+                <form action="{% url 'cliente:search' %}" method="GET">
                     <div class="input-group text-center">
-                        <input type="search" class="form-control" placeholder="Ingresa proveedor" name="search">
+                        <input type="search" class="form-control" placeholder="Ingresa un cliente" name="search">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary btn-search" type="submit">Buscar</button>
                         </div>
@@ -38,32 +36,28 @@
                   </tr>
                 </thead>
                 <tbody>
-                
                 {% for element in object_list %}
-                    <tr>
-                        <td>{{element.nombre}}</td>
-                        <td>{{element.descripcion}}</td>
-                        <td>{{element.telefono_uno}} 
-                            {% if element.telefono_dos %}
-                                y {{element.telefono_dos}}
-                            {% endif %}
-                        </td>
-                        <td>{{element.correo}}</td>
-                        <td>
-                            <!-- UPDATE -->
-                            <a onclick="return abrir_modal('{% url 'proveedor:update' element.id %}')" href="#"><i class="fas fa-pen-square icon-table-up"></i></a>
-                            <!-- DELETE -->
-                            <a onclick="return abrir_modal ('{% url 'proveedor:delete' element.id %}')" href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>{{element.nombre}}</td>
+                    <td>{{element.descripcion}}</td>
+                    <td>{{element.telefono_uno}}
+                        {% if element.telefono_dos %} 
+                         y {{element.telefono_dos}}
+                        {% endif %}
+                    </td>
+                    <td>{{element.correo}}</td>
+                    <td>
+                        <a href=""><i class="fas fa-pen-square icon-table-up"></i></a>
+                        <a href=""><i class="fas fa-trash-alt icon-table-del"></i></a>
+                    </td>
+                </tr>
                 {% endfor %}
                 </tbody>
-                
               </table>
             
         </div>
 
     </div>
 </section>
-<hr class="m-0" />
+
 {% endblock %}
