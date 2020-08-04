@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from .models import ClienteModel
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
-from .forms import ClienteForm
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
+from .forms import ClienteForm, ClienteModalForm
 from django.urls import reverse_lazy
 
 class ClienteList(ListView):
@@ -45,3 +45,15 @@ class SearchView(ListView):
         context['clientes'] = ClienteModel.objects.all() 
 
         return context
+
+class ClienteUpdate(UpdateView):
+    model = ClienteModel
+    form_class = ClienteModalForm
+    template_name = 'cliente/clientes_update.html'
+    context_object_name = 'obj'
+    success_url = reverse_lazy('cliente:index')
+
+class ClienteDelete(DeleteView):
+    model = ClienteModel
+    template_name = 'cliente/includes/modal_delete.html'
+    success_url = reverse_lazy('cliente:index')
