@@ -10298,11 +10298,11 @@ section.resume-section .resume-section-content {
 
 .h1-registration{
   font-size:3em;
-  color: black;
+  color: white;
 }
 
 .content-form{
-  background-color: #fff;
+  background-color: #343a40;
   width: 400px;
   padding: 1em;
   margin: 3em 0;
@@ -10315,7 +10315,7 @@ section.resume-section .resume-section-content {
 }
 
 .label-registration{
-  color: black;
+  color: white;
   font-size: 1.2em;
   margin-top: 1em;
 }
@@ -10373,6 +10373,8 @@ section.resume-section .resume-section-content {
 .btn{
   transition: .3s;
 }
+
+
 
 @media screen and (max-width: 400px) {
   .content-form{

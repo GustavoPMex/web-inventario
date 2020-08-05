@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+    <section class="resume-section">
+        <div class="resume-section-content">
+            <h1 class="mb-5 h1-resume-section">
+                Personal
+            </h1>
+
+            {% include 'registration/includes/submenu_registration.html' %}
+
+            <div class="content-form mx-auto">
+                <h1 class="h1-registration mb-4">Registro</h1>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <label class="label-registration" for="">Correo</label>
+                    {{form.username}}
+
+                    <label class="label-registration" for="">Contraseña</label>
+                    {{form.password1}}        
+
+                    <label class="label-registration" for="">Confirmar contraseña</label>
+                    {{form.password2}}
+
+                    <button type="submit" class="btn btn-success mt-5 btn-registration">Entrar</button>
+                </form>
+                
+            </div>
+        </div>
+    </section>
+{% endblock %}

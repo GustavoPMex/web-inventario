@@ -7,33 +7,27 @@
 <div class="content-form mx-auto">
     <h1 class="h1-registration mb-4">Acceso</h1>
     
-    {% if 'register' in request.GET %} 
-        <p style="color:green;">Usuario registrado correctamente</p>
-    {% endif %}
-
     {% if form.non_field_errors %} 
         <p style="color:red">Usuario o contraseña incorrectos</p>
     {% endif %}
 
-    <form action="">
-
+    <form action="" method="post">
+        {% csrf_token %}
 
         <label class="label-registration" for="">Usuario</label>
-        <input class="form-control" type="text" placeholder="Correo">
+        <input id="id_username" class="form-control" name="username" type="text" placeholder="Ingrese usuario" required>
 
         <label class="label-registration" for="">Contraseña</label>
-        <input class="form-control" type="text" placeholder="Contraseña">
+        <input id="id_password" class="form-control" name="password" type="password" placeholder="Ingrese Contraseña" required>
 
         <button type="submit" class="btn btn-success mt-5 btn-registration">Entrar</button>
+
     </form>
 
     <div class="mt-5">
         <a href="" class="link-registration"><p class="p-registration">Cambiar contraseña</p></a>
     </div>
 
-    <div class="mt-2">
-        <a href="register.html" class="link-registration"><p class="p-registration">Registrarse</p></a>
-    </div>
 </div>
         
 {% endblock %}

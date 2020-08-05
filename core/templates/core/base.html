@@ -7,21 +7,21 @@
         <meta name="author" content="" />
         <title> Adminv | {% block title %}{% endblock %} </title>
         {% load static %}
-        <link rel="icon" type="image/x-icon" href="{% static 'core/assets/img/settings.png' %}" />
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/img/settings.png' %}" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Nav -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="index.html">
+            <a class="navbar-brand js-scroll-trigger" href="{% url 'home:index' %}">
                 <span class="d-block d-lg-none">Adminv</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'core/assets/img/profile.jpg' %}" alt="" /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'assets/img/profile.jpg' %}" alt="" /></span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -33,7 +33,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="garantias.html">Garantias</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/proveedores/' or request.path == '/proveedores/create/' %}select-menu{% endif %}"  href="{% url 'proveedor:index' %}">Proveedores</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/clientes/' or request.path == '/clientes/create/' %}select-menu{% endif %}" href="{% url 'cliente:index' %}">Clientes</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="personal.html">Personal</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/accounts/signup/' %}select-menu{% endif %}" href="{% url 'signup' %}">Personal</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="perfil_actual.html">Perfil actual</a></li>
                 </ul>
             </div>
@@ -53,7 +53,7 @@
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
-        <script src="{% static 'core/js/scripts.js' %}"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
 
         <script>
             function abrir_modal(url){
