@@ -15,8 +15,11 @@
                 <h1 class="h1-registration mb-4">Registro</h1>
                 <form action="" method="POST">
                     {% csrf_token %}
-                    <label class="label-registration" for="">Correo</label>
+                    <label class="label-registration" for="">Usuario</label>
                     {{form.username}}
+
+                    <label class="label-registration" for="">Correo</label>
+                    {{form.email}}
 
                     <label class="label-registration" for="">Contraseña</label>
                     {{form.password1}}        

@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+{%load static %}
+
+{% block title %}Perfil{% endblock %}
+
+
+{% block content %}
+
+<section class="resume-section">
+    <div class="resume-section-content">
+        <h1 class="mb-5 h1-resume-section">
+            Actualizar Perfil
+        </h1>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %} 
+
+            <!-- Previa del avatar -->
+            <div class="form-group">
+                {% if request.user.profile.avatar %}
+                    <img src="{{request.user.profile.avatar.url}}" class="img-fluid">
+                    <p class="mt-1 mb-5 p-checkbox">¿Borrar? <input type="checkbox" id="avatar-clear" name="avatar-clear" /></p>
+                {% else %}
+                    <img src="{% static 'assets/img/original.jpg' %}" class="img-fluid">
+                {% endif %}
+            </div>
+            
+            <!-- Formulario -->
+            <div class="form-group">
+                <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
+            </div>
+
+            <div class="form-group">
+                <label class="label-form">Dirección</label>
+                {{form.direccion}}
+            </div>
+
+            <div class="form-group">
+                <label class="label-form">Telefono</label>
+                {{form.telefono}}
+            </div>
+
+            <div class="form-group">
+                <label class="label-form">Correo</label>
+                {{form.correo}}
+            </div>
+
+            <input type="submit" class="btn btn-primary btn-block mt-3" value="Actualizar">
+        </form>
+    </div>
+</section>
+
+{% endblock %}

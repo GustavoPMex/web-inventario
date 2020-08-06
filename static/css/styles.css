@@ -10309,6 +10309,15 @@ section.resume-section .resume-section-content {
   border-radius: .5em;
 }
 
+.content-form-email{
+  background-color: #343a40;
+  width: 500px;
+  padding: .5em;
+  margin: 3em 0;
+  border-radius: .5em;
+
+}
+
 .body-registration{
   padding: 0;
   width: 100%;
@@ -10374,11 +10383,40 @@ section.resume-section .resume-section-content {
   transition: .3s;
 }
 
+.img-fluid{
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin-bottom: 2em;
+  border: 3px solid;
+  background-size: cover;
+}
+
+input[type="checkbox"]{
+  width: 20px; 
+  height: 20px; 
+}
+
+.p-checkbox{
+  font-size: 1.5em;
+}
+
+.form-control-file {
+  background-color: rgb(138, 138, 138);
+  border-radius: .5em;
+}
 
 
-@media screen and (max-width: 400px) {
+
+@media screen and (max-width: 500px) {
   .content-form{
     width: 300px;
+    padding: .8em;
+  }
+  .content-form-email{
+    width: 300px;
+    padding: .8em;
+
   }
 }
 
