@@ -6,13 +6,13 @@
 <style>.errorlist{color:red;}</style>
 <div class="content-form mx-auto">
     <h1 class="h1-registration mb-4">Acceso</h1>
-    
-    {% if form.non_field_errors %} 
-        <p style="color:red">Usuario o contraseña incorrectos</p>
-    {% endif %}
 
     <form action="" method="post">
         {% csrf_token %}
+        
+        {% if form.non_field_errors %} 
+            <p style="color:red">Usuario o contraseña incorrectos</p>
+        {% endif %}
 
         <label class="label-registration" for="">Usuario</label>
         <input id="id_username" class="form-control" name="username" type="text" placeholder="Ingrese usuario" required>

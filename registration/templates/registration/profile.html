@@ -1,5 +1,7 @@
 {% extends 'core/base.html' %}
 
+{% load static %}
+
 {% block title %}Perfil actual{% endblock %}
 
 {% block content %}
@@ -7,9 +9,15 @@
     <div class="resume-section-content">
         <div class="row w-100 mx-auto justify-content-center">
             {% for element in object_list %}
-                <div class="perfil-bg">
-                    <img class="perfil-photo" src="{{element.avatar.url}}" alt="">
-                </div>
+                {% if request.user.profile.avatar %}
+                    <div class="perfil-bg">
+                        <img class="perfil-photo" src="{{element.avatar.url}}" alt="">
+                    </div>
+                {% else %}
+                    <div class="perfil-bg">
+                        <img class="perfil-photo" src="{% static 'assets/img/original.jpg' %}">
+                    </div>
+                {% endif %}
 
                 <div class="perfil-text">
                     <p class="perfil-title">Usuario</p>

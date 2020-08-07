@@ -46,7 +46,22 @@
                 {{form.correo}}
             </div>
 
+            <div class="form-group">
+                <label class="label-form">Correo modelo</label>
+                <input type="email" value="{{request.user.email}}" class="form-control" readonly> 
+            </div>
+            
+            <div class="form-group mt-5">
+                <a href="{% url 'profile_email' %}" class="link-registration"><p class="p-registration">Cambiar correo</p></a>
+            </div>
+            
+            <div class="form-group">
+                <a href="{% url 'password_change' %}" class="link-registration"><p class="p-registration">Cambiar contraseña</p></a>
+            </div>
+
             <input type="submit" class="btn btn-primary btn-block mt-3" value="Actualizar">
+
+            <a class="btn btn-danger btn-block mt-3" href="{% url 'profile' %}">Regresar</a>
         </form>
     </div>
 </section>

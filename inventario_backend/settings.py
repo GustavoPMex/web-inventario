@@ -51,6 +51,9 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
 LOGIN_REDIRECT_URL = 'home:index'
 
+LOGOUT_REDIRECT_URL = 'login'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

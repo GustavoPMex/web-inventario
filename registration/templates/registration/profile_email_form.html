@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Cambio de email{% endblock %}
+
+{% block content %}
+
+<section class="resume-section">
+    <div class="resume-section-content">
+        <h1 class="mb-5 h1-resume-section">
+            Actualizar Perfil
+        </h1>
+
+        <form action="" method="post">{% csrf_token %}
+            <div class="form-group">
+                <h3 class="mb-4">Email</h3>
+                {{form.email}}
+            </div>
+          <p><input type="submit" class="btn btn-primary btn-block" value="Actualizar"></p>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
