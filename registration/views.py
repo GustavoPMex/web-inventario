@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
+from django.views.generic.base import TemplateView
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django import forms
@@ -8,11 +9,13 @@ from .forms import UserCreationFormWithEmail, ProfileForm, EmailForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from django.contrib.auth.models import User
 
-class UsuariosList(ListView):
-    model = Profile
+@method_decorator(login_required, name='dispatch')
+class ProfileView(TemplateView):
     template_name = 'registration/profile.html'
 
+@method_decorator(login_required, name='dispatch')
 class SignUpView(CreateView):
     form_class = UserCreationFormWithEmail
     template_name = 'registration/signup.html'
@@ -50,5 +53,8 @@ class EmailUpdate(UpdateView):
         form = super(EmailUpdate, self).get_form()
         #Modificar en tiempo real
         form.fields['email'].widget = forms.EmailInput(attrs={'class':'form-control','placeholder':'Email'})
-
         return form
+
+class ListUsers(ListView):
+    model = Profile
+    template_name = 'registration/list_users.html'

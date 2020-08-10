@@ -20,12 +20,11 @@ class UserCreationFormWithEmail(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['avatar', 'direccion', 'telefono', 'correo']
+        fields = ['avatar', 'direccion', 'telefono']
         widgets = {
             'avatar': forms.ClearableFileInput(attrs={'class':'form-control'}),
             'direccion': forms.Textarea(attrs={'class':'form-control', 'rows':4, 'placeholder':'Ingrese su dirección'}),
             'telefono': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Ingrese Telefono'}),
-            'correo': forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Ingrese correo'}),
         }
 
 class EmailForm(forms.ModelForm):

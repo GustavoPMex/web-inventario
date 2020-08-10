@@ -1,25 +1,29 @@
-{% extends 'core/base.html' %}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Actualizar email</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
-{% load static %}
+        <div class="modal-body">
+            <form action="{% url 'profile_email' %}" method="post">{% csrf_token %}
+                <div class="text-center col-12">
+                    <div class="form-group mb-3 mx-auto">
+                        {{form.email}}
+                    </div>
+                </div>
 
-{% block title %}Cambio de email{% endblock %}
+                <div class="modal-footer mx-auto">
 
-{% block content %}
+                    <button type="submit" class="btn btn-success">Actualizar</button>
+    
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+    
+                </div>
 
-<section class="resume-section">
-    <div class="resume-section-content">
-        <h1 class="mb-5 h1-resume-section">
-            Actualizar Perfil
-        </h1>
-
-        <form action="" method="post">{% csrf_token %}
-            <div class="form-group">
-                <h3 class="mb-4">Email</h3>
-                {{form.email}}
-            </div>
-          <p><input type="submit" class="btn btn-primary btn-block" value="Actualizar"></p>
-        </form>
+            </form>
+        </div>
     </div>
-</section>
-
-{% endblock %}
+</div>

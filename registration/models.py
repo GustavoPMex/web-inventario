@@ -7,4 +7,3 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to='avatares', null=True, blank=True)
     direccion = models.TextField()
     telefono = PhoneField()
-    correo = models.EmailField()

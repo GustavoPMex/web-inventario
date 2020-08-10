@@ -4,11 +4,15 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import ProveedorForm,ProveedorModalForm
 from .models import ProveedorModel
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
+@method_decorator(login_required, name='dispatch')
 class ProveedorList(ListView):
     model = ProveedorModel
     template_name = 'proveedor/proveedor.html'
 
+@method_decorator(login_required, name='dispatch')
 class ProveedorSearch(ListView):
     model = ProveedorModel
     template_name = 'proveedor/proveedor_search.html'
@@ -37,7 +41,8 @@ class ProveedorSearch(ListView):
         context['proveedores'] = ProveedorModel.objects.all()
 
         return context
-    
+
+@method_decorator(login_required, name='dispatch')
 class ProveedorCreate(CreateView):
     model = ProveedorModel
     form_class = ProveedorForm
@@ -45,7 +50,7 @@ class ProveedorCreate(CreateView):
     
     success_url = reverse_lazy('proveedor:index')
 
-
+@method_decorator(login_required, name='dispatch')
 class ProveedorUpdate(UpdateView):
     model = ProveedorModel
     form_class = ProveedorModalForm
@@ -53,6 +58,7 @@ class ProveedorUpdate(UpdateView):
     template_name = 'proveedor/proveedor_update.html'
     success_url = reverse_lazy('proveedor:index')
 
+@method_decorator(login_required, name='dispatch')
 class ProveedorDelete(DeleteView):
     model = ProveedorModel
     template_name = 'proveedor/includes/modal_delete.html'

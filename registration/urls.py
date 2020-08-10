@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import SignUpView, UsuariosList, ProfileUpdate, EmailUpdate
+from .views import SignUpView, ProfileView, ProfileUpdate, EmailUpdate, ListUsers
+from .models import Profile
 
 urlpatterns = [
-    path('profile/', UsuariosList.as_view(), name='profile'),
+    path('list_users/', ListUsers.as_view(), name='list_users'),
+    path('profile/', ProfileView.as_view(), name='profile'),
     path('signup/', SignUpView.as_view(), name='signup'),
     path('profile_update/', ProfileUpdate.as_view(), name='profile_update'),
     path('profile_update/email/', EmailUpdate.as_view(), name='profile_email'),

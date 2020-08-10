@@ -9,10 +9,7 @@
             Personal
         </h1>
 
-        <div class="row w-100 mb-5 mx-auto justify-content-center">
-            <a href="personal.html" class="col-12 col-md-3 mx-1 mb-1 submenu-activate list-submenu">Lista</a>
-            <a href="personal_form.html" class="col-12 col-md-3 mx-1 mb-1  list-submenu">Agregar</a>
-        </div>
+        {% include 'registration/includes/submenu_registration.html' %}
 
         <div class="row w-100 mx-auto mb-5 justify-content-center">
             <div class="col-12 col-lg-5  mt-5 mt-lg-2 text-center mt-3">
@@ -32,25 +29,37 @@
                 <thead>
                   <tr>
                     <th scope="col">Nombre</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Dirección</th>
                     <th scope="col">Telefono</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Permisos</th>
                     <th scope="col">Acción</th>
                   </tr>
                 </thead>
                 <tbody>
+                {% for element in object_list %}
                   <tr>
-                    <td>Algfghgfhun nombre</td>
-                    <td>Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada. Sed porttitor lectus nibh. Donec rutrum congue leo eget malesuada.</td>
-                    <td>999999999</td>
-                    <td>emailasla_sq@gmail.com</td>
-                    <td>Tecnico</td>
+                    <td>{{element.usuario}}</td>
+                    <td>{{element.usuario.email}}</td>
                     <td>
-                        <a href=""><i class="fas fa-pen-square icon-table-up"></i></a>
-                        <a href=""><i class="fas fa-trash-alt icon-table-del"></i></a>
+                        {% if element.direccion %}
+                            {{element.direccion}}
+                        {% else %}
+                            <p>Sin dato</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if element.telefono %}
+                            {{element.telefono}}
+                        {% else %}
+                            <p>Sin dato</p>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="#"><i class="fas fa-pen-square icon-table-up"></i></a>
+                        <a href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
                     </td>
                   </tr>
+                {% endfor %}
                 </tbody>
               </table>
         </div>
