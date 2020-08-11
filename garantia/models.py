@@ -1,14 +1,16 @@
 from django.db import models
 from cliente.models import ClienteModel
-from model_utils import Choices
-
+from djchoices import ChoiceItem, DjangoChoices
 class GarantiaModel(models.Model):
-    STATUSES = Choices((0,'pendiente', _('pendiente')), (1,'entregado', _('entregado')))
+    
+    class Estado(DjangoChoices):
+        pendiente = ChoiceItem('pendiente', 'Pendiente')
+        terminado = ChoiceItem('terminado', 'Terminado')
 
-    cliente = models.ManyToManyField(ClienteModel)
+    cliente = models.ForeignKey(ClienteModel, on_delete=models.PROTECT, default=None)
     articulo = models.TextField()
     tecnico = models.CharField(max_length=100)
-    estado = models.IntegerField(choices=STATUSES, default=STATUSES.draft)
+    estado = models.CharField(max_length=20, choices=Estado.choices, default=Estado.pendiente)
     creacion = models.DateTimeField(auto_now_add=True)
     modificacion = models.DateTimeField(auto_now=True)
 
