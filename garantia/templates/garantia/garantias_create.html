@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Agregar{% endblock %}
+
+{% block content %}
+<section class="resume-section">
+    <div class="resume-section-content">
+        <h1 class="mb-5 h1-resume-section">
+            Proveedores
+        </h1>
+
+        {% include 'garantia/includes/submenu_garantia.html' %}
+
+        <form method="post">
+            {%csrf_token%}
+            <div class="form-group">
+                <label class="label-form">Cliente*</label>
+                {{form.cliente}}
+
+                <a class="link-others mt-3" href="{% url 'cliente:create' %}"><p class="p-registration">Crear cliente</p></a>
+            </div>
+
+            <div class="form-group">
+                <label class="label-form">Articulo*</label>
+                {{form.articulo}}
+            </div>
+
+            <div class="form-group">
+                <label class="label-form">Técnico</label>
+                {{form.tecnico}}
+            </div>
+
+            <div class="form-group">
+                <label class="label-form">Estado</label>
+                {{form.estado}} 
+
+            </div>
+
+            <button type="submit" class="btn btn-success btn-form">Crear</button>
+        </form>
+    </div>
+</section>
+<hr class="m-0" />
+{% endblock %}

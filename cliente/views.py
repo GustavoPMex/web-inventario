@@ -57,3 +57,4 @@ class ClienteDelete(DeleteView):
     model = ClienteModel
     template_name = 'cliente/includes/modal_delete.html'
     success_url = reverse_lazy('cliente:index')
+    

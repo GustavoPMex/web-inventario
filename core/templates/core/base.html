@@ -30,7 +30,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Inventario</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="taller.html">Taller</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="servicios.html">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="garantias.html">Garantias</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/garantias/' %}select-menu{% endif %}"  href="{% url 'garantias:index' %}">Garantias</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/proveedores/' or request.path == '/proveedores/create/' %}select-menu{% endif %}"  href="{% url 'proveedor:index' %}">Proveedores</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/clientes/' or request.path == '/clientes/create/' %}select-menu{% endif %}" href="{% url 'cliente:index' %}">Clientes</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/accounts/list_users/' or request.path == '/accounts/signup/' %}select-menu{% endif %}" href="{% url 'list_users' %}">Personal</a></li>

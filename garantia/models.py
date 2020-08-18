@@ -1,6 +1,7 @@
 from django.db import models
 from cliente.models import ClienteModel
 from djchoices import ChoiceItem, DjangoChoices
+
 class GarantiaModel(models.Model):
     
     class Estado(DjangoChoices):

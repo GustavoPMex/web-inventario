@@ -19,12 +19,14 @@ from django.conf import settings
 from core.urls import home_urls
 from proveedor.urls import proveedor_urls
 from cliente.urls import cliente_urls
+from garantia.urls import garantias_urls
 
 urlpatterns = [
     path('', include(home_urls)),
     path('proveedores/', include(proveedor_urls)),
     path('clientes/', include(cliente_urls)),
     path('admin/', admin.site.urls),
+    path('garantias/', include(garantias_urls)),
     #PATHS TO USER
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('registration.urls')),
