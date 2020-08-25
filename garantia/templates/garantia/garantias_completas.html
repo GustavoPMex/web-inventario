@@ -13,9 +13,9 @@
 
         {% include 'garantia/includes/submenu_garantia.html' %}
 
+        {% include 'garantia/includes/filters_garantia_completas.html' %}
+        
         {% if object_list %}
-
-        {% include 'garantia/includes/filters_garantia.html' %}
         
         <div class="row w-100 mb-5 mx-auto table-responsive">
             <table class="table table-striped table-dark">
@@ -34,7 +34,7 @@
                   <tr>
                     <td>{{element.cliente}}</td>
                     <td>{{element.articulo}}</td>
-                    <td>{{element.tecnico}}</td>
+                    <td>{{element.tecnico|title}}</td>
                     <td>{{element.modificacion}}</td>
                     <td>{{element.estado}}</td>
                     <td>
