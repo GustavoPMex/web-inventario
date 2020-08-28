@@ -58,3 +58,34 @@ class EmailUpdate(UpdateView):
 class ListUsers(ListView):
     model = Profile
     template_name = 'registration/list_users.html'
+
+
+class SearchView(ListView):
+    model = Profile
+    template_name = 'registration/search_list.html'
+    context_object_name = 'all_search_results'
+
+    def get_queryset(self):
+        result = super(SearchView, self).get_queryset()
+        query = self.request.GET.get('search')
+
+        query = query.title() 
+
+        if query:
+            postresult = Profile.objects.filter(usuario__username__contains=query)
+
+            if postresult:
+                result = postresult
+            else:
+                result = 'no results'
+
+        else:
+            result = 'no results'
+
+        return result
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchView, self).get_context_data(**kwargs)
+        context['profiles'] = Profile.objects.all()
+
+        return context

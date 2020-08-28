@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title> Adminv | {% block title %}{% endblock %} </title>
+        <title> Inventario | {% block title %}{% endblock %} </title>
         {% load static %}
         <link rel="icon" type="image/x-icon" href="{% static 'assets/img/settings.png' %}" />
         <!-- Font Awesome icons (free version)-->
@@ -29,7 +29,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/' %}select-menu{% endif %}" href="{% url 'home:index' %}">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Inventario</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="taller.html">Taller</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="servicios.html">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger {% if '/servicios/' in request.path %}select-menu{% endif %} " href="{% url 'servicios:index' %}">Servicios</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger {% if '/garantias/' in request.path %}select-menu{% endif %}"  href="{% url 'garantias:index' %}">
                         Garantias</a>
                     </li>

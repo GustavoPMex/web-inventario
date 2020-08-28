@@ -35,8 +35,8 @@
                     <td>{{element.cliente}}</td>
                     <td>{{element.articulo}}</td>
                     <td>{{element.tecnico|title}}</td>
-                    <td>{{element.modificacion}}</td>
-                    <td>{{element.estado}}</td>
+                    <td>{{element.modificacion|date:"d/F/Y - G:i a"}}</td>
+                    <td>{{element.estado|title}}</td>
                     <td>
                       <a onclick="return abrir_modal ('{% url 'garantias:delete' element.id %}')" href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
                     </td>

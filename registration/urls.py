@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SignUpView, ProfileView, ProfileUpdate, EmailUpdate, ListUsers
+from .views import SignUpView, ProfileView, ProfileUpdate, EmailUpdate, ListUsers, SearchView
 from .models import Profile
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path('signup/', SignUpView.as_view(), name='signup'),
     path('profile_update/', ProfileUpdate.as_view(), name='profile_update'),
     path('profile_update/email/', EmailUpdate.as_view(), name='profile_email'),
+    path('search/', SearchView.as_view(), name='search_p')
 ]

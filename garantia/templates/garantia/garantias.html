@@ -35,8 +35,8 @@
                         <td>{{element.cliente}}</td>
                         <td>{{element.articulo}}</td>
                         <td>{{element.tecnico|title}}</td>
-                        <td>{{element.creacion}}</td>
-                        <td>{{element.estado}}</td>
+                        <td>{{element.creacion|date:"d/F/Y - G:i a"}}</td>
+                        <td>{{element.estado|title}}</td>
                         <td>
                             <a onclick="return abrir_modal ('{% url 'garantias:update' element.id %}')" href="#"><i class="fas fa-pen-square icon-table-up"></i></a>
                         </td>

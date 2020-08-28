@@ -15,15 +15,20 @@
             <div class="col-12 col-lg-5  mt-5 mt-lg-2 text-center mt-3">
                 <form action="{% url 'search_p' %}" method="GET">
                     <div class="input-group text-center">
-                        <input type="search" class="form-control" placeholder="Ingresa un usuario" name="search">
+                        <input type="search" class="form-control" placeholder="Ingresa un cliente" name="search">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary btn-s-shop" type="submit">Buscar</button>
+                            <button class="btn btn-outline-secondary btn-search" type="submit">Buscar</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        
+
+    {% if all_search_results == 'no results' %}
+        <div class="col justify-content-center">
+            <p class="text-center text-search" >NO SE ENCONTRARON RESULTADOS</p>
+        </div>
+    {% else %}
         <div class="row w-100 mb-5 mx-auto table-responsive">
             <table class="table table-striped table-dark">
                 <thead>
@@ -38,7 +43,7 @@
                 <tbody>
                 {% for element in object_list %}
                   <tr>
-                    <td>{{element.usuario|title}}</td>
+                    <td>{{element.usuario}}</td>
                     <td>{{element.usuario.email}}</td>
                     <td>
                         {% if element.direccion %}
@@ -63,6 +68,7 @@
                 </tbody>
               </table>
         </div>
+    {% endif %}
     </div>
 </section>
 <hr class="m-0" />

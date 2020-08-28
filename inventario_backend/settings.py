@@ -25,7 +25,7 @@ SECRET_KEY = '=+n(^as1li^j&6zdzw6oey(58)0vf()71g1i4-qd%mmn1ojdj)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +46,7 @@ PROJECT_APPS = [
     'proveedor.apps.ProveedorConfig',
     'cliente.apps.ClienteConfig',
     'garantia.apps.GarantiaConfig',
+    'servicios.apps.ServiciosConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
