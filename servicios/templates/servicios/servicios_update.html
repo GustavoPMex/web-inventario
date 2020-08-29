@@ -1,0 +1,46 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header ">
+            <h5 class="modal-title" id="exampleModalLabel">Garantias</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+
+            <form role="form" action="{% url 'servicios:update' obj.id %}" method="post"  class="form-inline">
+                
+            {% csrf_token %} 
+
+            <div class="text-center col-12">
+                <div class="form-group mb-3 mx-auto">
+                    {{form.cliente}}
+                </div>
+
+                <div class="form-group mb-3 mx-auto">
+                    {{form.descripcion}}
+                </div>
+
+                <div class="form-group mb-3 mx-auto">
+                    {{form.tecnico}}
+                </div>
+
+                <div class="form-group mb-3 mx-auto">
+                    {{form.estado}}
+                </div>
+
+            </div>
+
+            <div class="modal-footer mx-auto">
+
+                <button type="submit" class="btn btn-success">Actualizar</button>
+
+                <a type="button" class="btn btn-danger" data-dismiss="modal" href="{% url 'servicios:index' %}">Cancelar</a>
+
+            </div>
+
+            </form>
+        </div>
+    </div>
+</div>

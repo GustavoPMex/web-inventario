@@ -9,12 +9,14 @@
             Servicios
         </h1>
 
+        {% include 'servicios/includes/modal.html' %}
+
         {% include 'servicios/includes/submenu_servicios.html' %}
         
       {% if object_list %}
         <div class="row w-100 mx-auto mb-5 justify-content-center">
             <div class="col-12 col-lg-5  mt-5 mt-lg-2 text-center mt-3">
-                <form action="" method="GET">
+                <form action="{% url 'servicios:search_p' %}" method="GET">
                     <div class="input-group text-center">
                         <input type="search" class="form-control" placeholder="Ingresa un cliente" name="search">
                         <div class="input-group-append">
@@ -44,7 +46,9 @@
                     <td>{{element.tecnico|title}}</td>
                     <td>{{element.creacion|date:"d/F/Y - G:i a"}}</td>
                     <td>
-                        <a href=""><i class="fas fa-pen-square icon-table-up"></i></a>
+                        <a onclick="return abrir_modal('{% url 'servicios:update' element.id %}')" href="#">
+                          <i class="fas fa-pen-square icon-table-up"></i>
+                        </a>
                     </td>
                   </tr>
                 {% endfor %}

@@ -19,6 +19,11 @@ class ServicioModel(models.Model):
     def __str__(self):
         return self.cliente.nombre
 
+    def save(self, *args, **kwargs):
+        self.cliente.nombre = self.cliente.nombre.title()
+        return super(ServicioModel, self).save(*args, **kwargs)
+
+
     class Meta:
         verbose_name = 'Servicio'
         verbose_name_plural = 'Servicios'

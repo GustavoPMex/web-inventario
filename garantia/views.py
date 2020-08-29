@@ -52,7 +52,7 @@ class GarantiasUpdate(UpdateView):
 class GarantiasDelete(DeleteView):
     model = GarantiaModel
     template_name = 'garantia/garantias_delete.html'
-    success_url = reverse_lazy('garantias:index')
+    success_url = reverse_lazy('garantias:completas')
 
 def personal_filter(request):
     profiles = Profile.objects.all()
