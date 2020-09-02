@@ -145,11 +145,9 @@ def fecha_filter_terminado(request):
             return redirect('garantias:completas')
 
         elif select_value == '2019':
-            print('2019')
             list_item_terminado = GarantiaModel.objects.filter(creacion__year = '2019', estado='terminado')
          
         elif select_value == '2020':
-            print('2020')
             list_item_terminado = GarantiaModel.objects.filter(creacion__year = '2020', estado='terminado')
  
         else:

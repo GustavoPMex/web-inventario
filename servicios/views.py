@@ -75,6 +75,7 @@ class SearchView(ListView):
     def get_context_data(self, **kwargs):
         context = super(SearchView, self).get_context_data(**kwargs)
         context['clientes'] = ServicioModel.objects.all()
+        context['profiles'] = Profile.objects.all()
 
         return context
 
@@ -104,6 +105,7 @@ class SearchView_terminado(ListView):
     def get_context_data(self, **kwargs):
         context = super(SearchView_terminado, self).get_context_data(**kwargs)
         context['clientes'] = ServicioModel.objects.all()
+        context['profiles'] = Profile.objects.all()
 
         return context
 
@@ -117,7 +119,7 @@ def profile_view_filter(request):
         if select_value == 'all':
             return redirect('servicios:index')            
         else:
-            profiles_filters = ServicioModel.objects.filter(cliente__nombre__contains=select_value, estado__contains='pendiente')
+            profiles_filters = ServicioModel.objects.filter(tecnico__usuario__username=select_value, estado='pendiente')
 
     context = {
         'profiles':profiles,
@@ -137,7 +139,7 @@ def profile_view_filter_completados(request):
         if select_value == 'all':
             return redirect('servicios:terminados')            
         else:
-            profiles_filters = ServicioModel.objects.filter(cliente__nombre__contains=select_value, estado__contains='terminado')
+            profiles_filters = ServicioModel.objects.filter(tecnico__usuario__username=select_value, estado='terminado')
 
     context = {
         'profiles':profiles,

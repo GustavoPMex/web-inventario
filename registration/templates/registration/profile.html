@@ -10,7 +10,7 @@
         <div class="row w-100 mx-auto justify-content-center">
             {% if request.user.profile.avatar %}
                 <div class="perfil-bg">
-                    <img class="perfil-photo" src="{{request.user.profile.avatar}}" alt="">
+                    <img class="perfil-photo" src="{{request.user.profile.avatar.url}}" alt="">
                 </div>
             {% else %}
                 <div class="perfil-bg">

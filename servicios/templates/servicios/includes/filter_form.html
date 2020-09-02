@@ -6,7 +6,7 @@
                 <option  value="None">Técnico</option>
                 <option name='todo'  value="all">Todos</option>
                 {% for element in profiles %}
-                    <option value="{{element.usuario.nombre}}">{{element.usuario}}</option>
+                    <option value="{{element.usuario}}">{{element.usuario|title}}</option>
                 {% endfor %}
                 
             </select>
@@ -22,7 +22,7 @@
                 <option  value="None">Técnico</option>
                 <option name='todo'  value="all">Todos</option>
                 {% for element in profiles %}
-                    <option value="{{element.usuario.nombre}}">{{element.usuario}}</option>
+                    <option value="{{element.usuario}}">{{element.usuario|title}}</option>
                 {% endfor %}
                 
             </select>

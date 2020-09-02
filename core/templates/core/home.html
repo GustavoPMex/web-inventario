@@ -32,11 +32,19 @@
                 </div>
             </a>
 
-            <a class="a-content-div mx-auto mb-3 col-12  col-md-3"  href="#">
+            <a class="a-content-div mx-auto mb-3 col-12  col-md-3"  href="{% url 'garantias:index' %}">
                 <div class="div-content-a">
                     <i class="fab fa-usb icon-content-a"></i>
                     <p class="p-content-a mt-3">Garantias</p>
-                    <p class="p-content-a">Sin pendientes</p>
+                    {% if garantias %}
+                        {% if garantias.count == 1 %}
+                            <p class="p-content-a mt-3">{{garantias.count}} Pendiente</p>
+                        {% else %}
+                            <p class="p-content-a mt-3">{{garantias.count}} Pendientes</p>
+                        {% endif %}
+                    {% else %}
+                        <p class="p-content-a">Sin pendientes</p>
+                    {% endif %}
                 </div>
             </a>
             

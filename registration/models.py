@@ -13,5 +13,5 @@ class Profile(models.Model):
             return str(self.usuario)
 
     def save(self, *args, **kwargs):
-        self.usuario = self.usuario.title() 
+        self.usuario.username = self.usuario.username.title() 
         return super(Profile, self).save(*args, **kwargs)
