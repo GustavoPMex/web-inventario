@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import ServicioModel
 from django.urls import reverse_lazy
 from .forms import ServiciosCreateForm, ServiciosUpdateForm
+from registration.models import Profile
 
 class ServiciosList(ListView):
     model = ServicioModel
@@ -11,6 +12,11 @@ class ServiciosList(ListView):
 
     def get_queryset(self):
         return ServicioModel.objects.filter(estado='pendiente')
+    
+    def get_context_data(self, **kwargs):
+        context = super(ServiciosList, self).get_context_data(**kwargs)
+        context['profiles'] = Profile.objects.all()
+        return context
 
 class ServiciosListTerminados(ListView):
     model = ServicioModel
@@ -18,6 +24,12 @@ class ServiciosListTerminados(ListView):
 
     def get_queryset(self):
         return ServicioModel.objects.filter(estado='terminado')
+    
+    def get_context_data(self, **kwargs):
+        context = super(ServiciosListTerminados, self).get_context_data(**kwargs)
+        context['profiles'] = Profile.objects.all()
+        
+        return context
 
 class ServiciosCreate(CreateView):
     model = ServicioModel
@@ -94,3 +106,42 @@ class SearchView_terminado(ListView):
         context['clientes'] = ServicioModel.objects.all()
 
         return context
+
+def profile_view_filter(request):
+    profiles = Profile.objects.all()
+
+    if request.method == 'POST':
+
+        select_value = request.POST.get('select_profile', )
+
+        if select_value == 'all':
+            return redirect('servicios:index')            
+        else:
+            profiles_filters = ServicioModel.objects.filter(cliente__nombre__contains=select_value, estado__contains='pendiente')
+
+    context = {
+        'profiles':profiles,
+        'profiles_filters':profiles_filters
+    }
+
+    return render(request, 'servicios/servicios_filter.html', context)
+
+
+def profile_view_filter_completados(request):
+    profiles = Profile.objects.all()
+
+    if request.method == 'POST':
+
+        select_value = request.POST.get('select_profile', )
+
+        if select_value == 'all':
+            return redirect('servicios:terminados')            
+        else:
+            profiles_filters = ServicioModel.objects.filter(cliente__nombre__contains=select_value, estado__contains='terminado')
+
+    context = {
+        'profiles':profiles,
+        'profiles_filters':profiles_filters
+    }
+
+    return render(request, 'servicios/servicios_filter_completados.html', context)

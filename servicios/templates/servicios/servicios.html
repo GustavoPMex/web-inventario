@@ -25,6 +25,9 @@
                     </div>
                 </form>
             </div>
+
+            
+            {% include 'servicios/includes/filter_form.html' %}
         </div>
         
         <div class="row w-100 mb-5 mx-auto table-responsive">
@@ -63,3 +66,11 @@
     </div>
 </section>
 {% endblock %}
+
+<script>
+
+  $('form select').on('change', function(){
+  $(this).closest('form').submit();
+
+  });
+</script>
