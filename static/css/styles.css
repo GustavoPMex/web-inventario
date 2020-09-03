@@ -10172,6 +10172,10 @@ section.resume-section .resume-section-content {
 
 }
 
+.free-div{
+  background-color: #259c3f ;
+}
+
 .a-content-div:hover{
   text-decoration: none;
   background-color: #343a40;

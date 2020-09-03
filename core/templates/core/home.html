@@ -16,15 +16,23 @@
         
         <div class="row w-100 mb-5 mx-auto">
 
-            <a class="a-content-div mx-auto mb-3 col-12 col-md-3"  href="#">
+            <a class="a-content-div {% if not equipos  %}free-div{% endif %} mx-auto mb-3 col-12 col-md-3"  href="{% url 'taller:index' %}">
                 <div class="div-content-a">
                     <i class="fas fa-laptop icon-content-a"></i>
                     <p class="p-content-a mt-3">Equipos</p>
-                    <p class="p-content-a">Sin pendientes</p>
+                    {% if equipos %}
+                        {% if equipos.count == 1 %}
+                            <p class="p-content-a mt-3">{{equipos.count}} Pendiente</p>
+                        {% else %}
+                            <p class="p-content-a mt-3">{{equipos.count}} Pendientes</p>
+                        {% endif %}
+                    {% else %}
+                        <p class="p-content-a">Sin pendientes</p>
+                    {% endif %}
                 </div>
             </a>
 
-            <a class="a-content-div mx-auto mb-3 col-12 col-md-3"  href="#">
+            <a class="a-content-div free-div mx-auto mb-3 col-12 col-md-3"  href="#">
                 <div class="div-content-a">
                     <i class="fas fa-laptop-house icon-content-a"></i>
                     <p class="p-content-a mt-3">Servicios</p>
@@ -32,7 +40,7 @@
                 </div>
             </a>
 
-            <a class="a-content-div mx-auto mb-3 col-12  col-md-3"  href="{% url 'garantias:index' %}">
+            <a class="a-content-div  {% if not garantias %}free-div{% endif %}  mx-auto mb-3 col-12  col-md-3"  href="{% url 'garantias:index' %}">
                 <div class="div-content-a">
                     <i class="fab fa-usb icon-content-a"></i>
                     <p class="p-content-a mt-3">Garantias</p>
