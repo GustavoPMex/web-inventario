@@ -47,6 +47,7 @@ PROJECT_APPS = [
     'cliente.apps.ClienteConfig',
     'garantia.apps.GarantiaConfig',
     'servicios.apps.ServiciosConfig',
+    'taller.apps.TallerConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS

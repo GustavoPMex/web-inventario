@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Taller{% endblock %}
+
+{% block content %}
+<section class="resume-section">
+    <div class="resume-section-content">
+        <h1 class="mb-5 h1-resume-section">
+            Taller
+        </h1>
+
+        {% include 'taller/includes/modal.html' %}
+
+        {% include 'taller/includes/submenu_taller.html' %}
+
+        {% if object_list %}
+          {% include 'taller/includes/search_form.html' %}
+          
+          <div class="row w-100 mb-5 mx-auto table-responsive">
+              <table class="table table-striped table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">Equipo</th>
+                      <th scope="col">Descripción</th>
+                      <th scope="col">Cliente</th>
+                      <th scope="col">Personal</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Accion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for element in object_list %}
+                    <tr>
+                      <td scope="row">{{element.equipo}}</td>
+                      <td>{{element.descripcion}}</td>
+                      <td>{{element.cliente}}</td>
+                      <td>{{element.personal|title}}</td>
+                      <td>{{element.creacion|date:"d/F/Y - G:i a"}}</td>
+                      <td>
+                        <a onclick="return abrir_modal('{% url 'taller:update' element.id %}')" href="#">
+                          <i class="fas fa-pen-square icon-table-up"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              
+          </div>
+        {% else %}
+          <p class="p-vacia">Sin equipos pendientes</p>
+        {% endif %}
+
+    </div>
+</section>
+<hr class="m-0" />
+{% endblock %}

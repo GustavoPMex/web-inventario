@@ -21,6 +21,7 @@ from proveedor.urls import proveedor_urls
 from cliente.urls import cliente_urls
 from garantia.urls import garantias_urls
 from servicios.urls import servicios_urls
+from taller.urls import taller_urls
 
 urlpatterns = [
     path('', include(home_urls)),
@@ -29,6 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('garantias/', include(garantias_urls)),
     path('servicios/', include(servicios_urls)),
+    path('taller/', include(taller_urls)),
     #PATHS TO USER
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('registration.urls')),
