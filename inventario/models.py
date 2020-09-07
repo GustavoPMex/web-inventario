@@ -1,5 +1,5 @@
 from django.db import models
-
+from proveedor.models import ProveedorModel
 
 class CategoriaInvModel(models.Model):
     nombre = models.CharField(max_length=50)
@@ -16,9 +16,9 @@ class CategoriaInvModel(models.Model):
 
 
 class ArticuloModel(models.Model):
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=100)
     categoria = models.ManyToManyField(CategoriaInvModel)
-    proveedor = models.ManyToOneRel()
+    proveedor = models.ForeignKey(ProveedorModel, on_delete=models.PROTECT)
     precio = models.DecimalField(max_digits=6, decimal_places=2)
     cantidad = models.IntegerField()
     creacion = models.DateTimeField(auto_now_add=True)
