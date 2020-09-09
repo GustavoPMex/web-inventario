@@ -1,4 +1,5 @@
 from django.contrib import admin
+from simple_history.admin import SimpleHistoryAdmin
 from .models import CategoriaInvModel, ArticuloModel
 
 class CategoriaInvAdmin(admin.ModelAdmin):
@@ -6,7 +7,6 @@ class CategoriaInvAdmin(admin.ModelAdmin):
 
 admin.site.register(CategoriaInvModel, CategoriaInvAdmin)
 
-class ArticuloAdmin(admin.ModelAdmin):
-    readonly_fields = ('creacion', 'modificacion')
 
-admin.site.register(ArticuloModel, ArticuloAdmin)
+
+admin.site.register(ArticuloModel, SimpleHistoryAdmin)

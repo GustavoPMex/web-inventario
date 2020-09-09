@@ -10349,6 +10349,11 @@ section.resume-section .resume-section-content {
   transition: .2s;
 }
 
+.link-others:hover{
+  text-decoration: none;
+  color: #28a745;
+}
+
 .link-registration:hover{
   text-decoration: none;
 }

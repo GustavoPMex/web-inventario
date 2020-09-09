@@ -1,5 +1,6 @@
 from django.db import models
 from proveedor.models import ProveedorModel
+from simple_history.models import HistoricalRecords
 
 class CategoriaInvModel(models.Model):
     nombre = models.CharField(max_length=50)
@@ -23,6 +24,7 @@ class ArticuloModel(models.Model):
     cantidad = models.IntegerField()
     creacion = models.DateTimeField(auto_now_add=True)
     modificacion = models.DateTimeField(auto_now=True)
+    history = HistoricalRecords()
 
     def __str__(self):
         return self.nombre

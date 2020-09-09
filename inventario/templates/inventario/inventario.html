@@ -1,4 +1,6 @@
-{% extends 'base/base.html' %}
+{% extends 'core/base.html' %}
+
+{% load humanize %}
 
 {% block title %}Inventario{% endblock %}
 
@@ -10,105 +12,51 @@
             Inventario
         </h1>
 
-        <div class="row w-100 mb-0 mb-md-5 mx-auto justify-content-center">
-            <a href="inventario.html" class="col-12 col-md-2 mx-1 mb-1 submenu-activate list-submenu">Articulos</a>
-            <a href="inventario_modificado.html" class="col-12 col-md-3 mx-1 mb-1 list-submenu">Modificaciones</a>
-            <a href="inventario_venta.html" class="col-12 col-md-2 mx-1 mb-1 list-submenu">Ventas</a>
-            <a href="inventario_form.html" class="col-12 col-md-2 mx-1 mb-1  list-submenu">Agregar</a>
-        </div>
+        {% include 'inventario/includes/submenu_inventario.html' %}
 
-        <div class="row w-100 mx-auto mb-5 justify-content-center">
-            <div class="col-12 col-lg-3  mt-5 mt-lg-2 text-center mt-3">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Categorias
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="">Todo</a>
-                                <a class="dropdown-item" href="">Todo</a>
-                                <a class="dropdown-item" href="">Todo</a>
-                        <!-- {% for p in producto_obj %}
-                            {% for x in p.category.all %}
-                                <a class="dropdown-item" href="{% url 'home:category' x.id %}">{{x.name}}</a>
-                            {% endfor %}
-                        {% endfor %} -->
-                        </div>
-                    </div>
-            </div>
-
-            <div class="col-12 col-lg-3  mt-5 mt-lg-2 text-center mt-3">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Proveedores
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="">Todo</a>
-                            <a class="dropdown-item" href="">Todo</a>
-                            <a class="dropdown-item" href="">Todo</a>
-                    <!-- {% for p in producto_obj %}
-                        {% for x in p.category.all %}
-                            <a class="dropdown-item" href="{% url 'home:category' x.id %}">{{x.name}}</a>
-                        {% endfor %}
-                    {% endfor %} -->
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% if object_list %}
         
-        <div class="row w-100 mb-5 mx-auto table-responsive">
-            <table class="table table-striped table-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">Articulo</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Proveedor</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Accion</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td scope="row">Disco duro</td>
-                    <td>Kingston</td>
-                    <td>Alguna marca</td>
-                    <td>$500</td>
-                    <td>3</td>
-                    <td>
-                        <a href=""><i class="fas fa-pen-square icon-table-up"></i></a>
-                        <a href=""><i class="fas fa-trash-alt icon-table-del"></i></a>
-                        <a href=""><i class="fas fa-shopping-cart icon-table-cart"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="row">Usb</td>
-                    <td>Kingston</td>
-                    <td>segate</td>
-                    <td>$87</td>
-                    <td>1</td>
-                    <td>
-                        <a href=""><i class="fas fa-pen-square icon-table-up"></i></a>
-                        <a href=""><i class="fas fa-trash-alt icon-table-del"></i></a>
-                        <a href=""><i class="fas fa-shopping-cart icon-table-cart"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="row">Memoria ram</td>
-                    <td>Kingston</td>
-                    <td>Larry</td>
-                    <td>$700</td>
-                    <td>2</td>
-                    <td>
-                        <a href=""><i class="fas fa-pen-square icon-table-up"></i></a>
-                        <a href=""><i class="fas fa-trash-alt icon-table-del"></i></a>
-                        <a href=""><i class="fas fa-shopping-cart icon-table-cart"></i></a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            
-        </div>
+          {% include 'inventario/includes/filter_inventario.html' %}
 
+          <div class="row w-100 mb-5 mx-auto table-responsive">
+              <table class="table table-striped table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">Articulo</th>
+                      <th scope="col">Categoria</th>
+                      <th scope="col">Proveedor</th>
+                      <th scope="col">Precio</th>
+                      <th scope="col">Stock</th>
+                      <th scope="col">Accion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  
+                  {% for element in  object_list %}
+                    <tr>
+                      <td scope="row">{{element.nombre}}</td>
+                      <td>
+                        {% for cat in element.categoria.all %}
+                          {{cat.nombre}}{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                      </td>
+                      <td>{{element.proveedor}}</td>
+                      <td>${{element.precio|floatformat:0|intcomma}}</td>
+                      <td>{{element.cantidad}}</td>
+                      <td>
+                          <a href=""><i class="fas fa-pen-square icon-table-up"></i></a>
+                          <a href=""><i class="fas fa-trash-alt icon-table-del"></i></a>
+                          <a href=""><i class="fas fa-shopping-cart icon-table-cart"></i></a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+          </div>
+        
+        {% else %}
+          <p class="p-vacia">Sin garantias pendientes</p>
+        {% endif %}
     </div>
 </section>
 <hr class="m-0" />
