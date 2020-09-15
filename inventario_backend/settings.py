@@ -40,7 +40,8 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     'phone_field',
     'simple_history',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'rest_framework'
 ]
 
 PROJECT_APPS = [
