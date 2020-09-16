@@ -9,15 +9,64 @@
             Inventario
         </h1>
         
-        {% include 'inventario/includes/modal.html' %}
 
         {% include 'inventario/includes/submenu_inventario.html' %}
+
+        <div id="app" class="container">
+            <h1>Lista de notas</h1>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalapi">
+              Agregar nota
+            </button>
+      
+            <table id="tablaprueba" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Title</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="elements in nombres">
+                  <td>[[ elements.id ]]</td>
+                  <td>[[ elements.nombre ]]</td>
+                </tr>
+              </tbody>
+            </table>
+      
+            <!-- Modal -->
+            <div class="modal fade" id="modalapi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <form method="POST" v-on:submit.prevent="createCategoria">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Nombre</label>
+                          <input type="text" class="form-control" v-model="nombre">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+      
 
         <form method="post">
             {%csrf_token%}
 
             <div class="form-group">
-                <div><a class="link-others mt-1"  onclick="return abrir_modal('{% url 'inventario:create_cat' %}')" href="#"><p class="p-registration">Crear categoria</p></a></div>
+               
                 <label class="label-form">Seleccionar categoria(s)</label>
                 <div><small  class="mt-3 form-text">Presiona "Ctrl" para seleccionar multiples categorias</small ></div>
                 {{form.categoria}}
