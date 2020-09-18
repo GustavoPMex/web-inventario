@@ -20,11 +20,6 @@ class InventarioCreate(CreateView):
     template_name = 'inventario/inventario_create.html'
     success_url = reverse_lazy('inventario:index')
 
-class CategoriaCreate(CreateView):
-    model = CategoriaInvModel
-    form_class = CategoriaCreateForm
-    template_name = 'inventario/categoria_create.html'
-    success_url = reverse_lazy('inventario:create')
 
 @api_view(['GET', 'POST'])
 def categoria_list(request):
