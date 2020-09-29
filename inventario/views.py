@@ -33,3 +33,10 @@ class CategoriaCreate(CreateView):
     template_name = 'inventario/categoria_create.html'
     success_url = reverse_lazy('inventario:create')
 
+class InventarioModificaciones(ListView):
+    template_name = 'inventario/inventario_modificaciones.html'
+
+    def get_queryset(self):
+        history = ArticuloModel.history.all()
+        return history
+  

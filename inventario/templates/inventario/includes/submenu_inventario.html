@@ -4,7 +4,8 @@
         {% if  '/inventario/list/' in request.path %}submenu-activate{% endif %}">Articulos
     </a>
     
-    <a href="#" class="col-12 col-md-3 mx-1 mb-1 list-submenu">
+    <a href="{% url 'inventario:modifications' %}" class="col-12 col-md-3 mx-1 mb-1 list-submenu
+        {% if  '/inventario/modificaciones/' in request.path %}submenu-activate{% endif %}">
         Modificaciones
     </a>
 
