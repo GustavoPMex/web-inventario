@@ -2,6 +2,7 @@ from django.db import models
 from proveedor.models import ProveedorModel
 from simple_history.models import HistoricalRecords
 
+from django.forms import ValidationError
 
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
@@ -54,17 +55,25 @@ class VentasModel(models.Model):
         self.articulo.cantidad = self.articulo.cantidad - self.vendido
         self.articulo.save()
 
+            
+
 
 @receiver(pre_save, sender=VentasModel)
 def ventas_detail(sender, **kwargs):
+    # Se obtiene la instancia que se está creando
     element = kwargs.get('instance', '')
+    # Se obtienen todos los ids de todos los objetos creados en el modelo "VentasModel"
     ids_ventas = [element.id for element in VentasModel.objects.all()]
+    # Se llama al metodo get_cantidad, que retornará la cantidad disponible del articulo que se desea
     number_cantidad = element.get_cantidad()
+    # Se llama al metodo_getcantidad, que retornará la cantidad de articulos que se venderán
     number_vendido = element.get_vendido()
 
+    # Comprobamos si el llamado es un create, preguntando si su "id" se encuentra en la lista ids_ventas
     if element.id not in ids_ventas:
+        # Comprobamos que lo vendido no exceda el stock
         if number_vendido > number_cantidad:
-            return 'imposible'
+            raise ValidationError(('Invalid value'), code='invalid')
         else:
             print(element.update_cantidad())
     else:

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
-from .models import ArticuloModel, CategoriaInvModel
+from .models import ArticuloModel, CategoriaInvModel, VentasModel
 from .forms import InventarioCreateForm, CategoriaCreateForm, InventarioUpdateForm
 
 class InventarioList(ListView):
@@ -35,8 +35,13 @@ class CategoriaCreate(CreateView):
 
 class InventarioModificaciones(ListView):
     template_name = 'inventario/inventario_modificaciones.html'
-
     def get_queryset(self):
         history = ArticuloModel.history.all()
         return history
   
+def ventas_create(request):
+    if request.method == 'POST':
+        form =
+
+        if form.is_valid():
+            form.save()
