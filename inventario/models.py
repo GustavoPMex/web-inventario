@@ -57,7 +57,6 @@ class VentasModel(models.Model):
 
             
 
-
 @receiver(pre_save, sender=VentasModel)
 def ventas_detail(sender, **kwargs):
     # Se obtiene la instancia que se está creando

@@ -1,5 +1,5 @@
 from django import forms
-from .models import ArticuloModel, CategoriaInvModel
+from .models import ArticuloModel, CategoriaInvModel, VentasModel
 
 class InventarioCreateForm(forms.ModelForm):
     class Meta:
@@ -31,4 +31,13 @@ class CategoriaCreateForm(forms.ModelForm):
         fields = ['nombre']
         widgets = {
             'nombre': forms.TextInput(attrs={'class':'form-control mb-1'})
+        }
+
+class VentasCreateForm(forms.ModelForm):
+    class Meta:
+        model = VentasModel
+        fields = ['articulo', 'vendido']
+        widgets = {
+            'articulo':forms.Select(attrs={'class':'form-control mb-1'}),
+            'vendido':forms.NumberInput(attrs={'class':'form-control'})
         }
