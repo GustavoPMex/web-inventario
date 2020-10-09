@@ -41,3 +41,7 @@ class VentasCreateForm(forms.ModelForm):
             'articulo':forms.Select(attrs={'class':'form-control mb-1'}),
             'vendido':forms.NumberInput(attrs={'class':'form-control'})
         }
+
+    
+    
+

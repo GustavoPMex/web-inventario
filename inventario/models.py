@@ -41,6 +41,7 @@ class ArticuloModel(models.Model):
 class VentasModel(models.Model):
     articulo = models.ForeignKey(ArticuloModel, on_delete=models.PROTECT)
     vendido = models.IntegerField()
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.articulo.nombre
@@ -51,9 +52,18 @@ class VentasModel(models.Model):
     def get_cantidad(self):
         return self.articulo.cantidad
     
+    def get_requisitos(self):
+        if self.vendido <= self.articulo.cantidad:
+            return True
+        else:
+            return False
+        
+
     def update_cantidad(self):
         self.articulo.cantidad = self.articulo.cantidad - self.vendido
         self.articulo.save()
+    
+
 
             
 
@@ -71,10 +81,10 @@ def ventas_detail(sender, **kwargs):
     # Comprobamos si el llamado es un create, preguntando si su "id" se encuentra en la lista ids_ventas
     if element.id not in ids_ventas:
         # Comprobamos que lo vendido no exceda el stock
-        if number_vendido > number_cantidad:
-            raise ValidationError(('Invalid value'), code='invalid')
-        else:
+        if element.get_requisitos():
             print(element.update_cantidad())
+        else:
+            print('Retornó falso')
     else:
         print('ACTUALIZADO')
 

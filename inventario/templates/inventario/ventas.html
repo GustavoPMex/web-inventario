@@ -22,9 +22,10 @@
                 <thead>
                   <tr>
                     <th scope="col">Articulo</th>
-                    <th scope="col">Proveedor</th>
-                    <th scope="col">Precio</th>
+                    <th scope="col">Precio unitario</th>
+                    <th scope="col">Precio total</th>
                     <th scope="col">Vendido</th>
+                    <th scope="col">Fecha de venta</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -32,9 +33,10 @@
                 {% for element in  object_list %}
                   <tr>
                     <td scope="row">{{element.articulo}}</td>
-                    <td>{{element.articulo.proveedor}}</td>
+                    <td>${{element.articulo.precio|floatformat:0|intcomma}}</td>
                     <td>${{element.articulo.precio|floatformat:0|intcomma}}</td>
                     <td>{{element.vendido}}</td>
+                    <td>{{element.created|date:"d/F/Y - G:i a"}}</td>
                   </tr>
                 {% endfor %}
                 </tbody>

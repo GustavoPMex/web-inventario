@@ -40,6 +40,7 @@ class InventarioModificaciones(ListView):
         return history
   
 def ventas_create(request):
+    form = VentasCreateForm()
     if request.method == 'POST':
         form = VentasCreateForm(request.POST)
 

@@ -11,4 +11,7 @@ admin.site.register(CategoriaInvModel, CategoriaInvAdmin)
 
 admin.site.register(ArticuloModel, SimpleHistoryAdmin)
 
-admin.site.register(VentasModel, )
+class VentasAdmin(admin.ModelAdmin):
+    readonly_fields = ('created', )
+
+admin.site.register(VentasModel, VentasAdmin)
