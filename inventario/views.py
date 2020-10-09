@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
@@ -46,8 +46,13 @@ def ventas_create(request):
         if form.is_valid():
             form.save()
 
-        return reverse_lazy('inventario:index')
+        return redirect('inventario:index')
     else:
         form = VentasCreateForm()
     
     return render(request, 'inventario/ventas_create.html', {'form':form})
+
+
+class ventas_list(ListView):
+    model = VentasModel
+    template_name = 'inventario/ventas.html'
