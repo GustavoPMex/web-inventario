@@ -38,10 +38,9 @@ class VentasCreateForm(forms.ModelForm):
         model = VentasModel
         fields = ['articulo', 'vendido']
         widgets = {
-            'articulo':forms.Select(attrs={'class':'form-control mb-1'}),
-            'vendido':forms.NumberInput(attrs={'class':'form-control'})
+            'articulo':forms.Select(attrs={'class':'form-control mb-1','id':'id_form_articulo'}),
+            'vendido':forms.NumberInput(attrs={'class':'form-control', 'id':'id_form_vendido'})
         }
 
-    
-    
+
 

@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from .models import ArticuloModel, CategoriaInvModel, VentasModel
 from .forms import InventarioCreateForm, CategoriaCreateForm, InventarioUpdateForm, VentasCreateForm
 
+
 class InventarioList(ListView):
     model = ArticuloModel
     template_name = 'inventario/inventario.html'
@@ -40,7 +41,7 @@ class InventarioModificaciones(ListView):
         return history
   
 def ventas_create(request):
-    form = VentasCreateForm()
+    
     if request.method == 'POST':
         form = VentasCreateForm(request.POST)
 
@@ -51,7 +52,11 @@ def ventas_create(request):
     else:
         form = VentasCreateForm()
     
-    return render(request, 'inventario/ventas_create.html', {'form':form})
+    context = {
+        'form':form,
+    }
+    
+    return render(request, 'inventario/ventas_create.html', context)
 
 
 class ventas_list(ListView):
