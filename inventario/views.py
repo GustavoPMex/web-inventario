@@ -4,7 +4,7 @@ from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from .models import ArticuloModel, CategoriaInvModel, VentasModel
 from .forms import InventarioCreateForm, CategoriaCreateForm, InventarioUpdateForm, VentasCreateForm
-
+from django.core import serializers
 
 class InventarioList(ListView):
     model = ArticuloModel
@@ -42,6 +42,8 @@ class InventarioModificaciones(ListView):
   
 def ventas_create(request):
     
+    json_data = serializers.serialize('json', ArticuloModel.objects.all())
+
     if request.method == 'POST':
         form = VentasCreateForm(request.POST)
 
@@ -51,11 +53,13 @@ def ventas_create(request):
         return redirect('inventario:index')
     else:
         form = VentasCreateForm()
-    
+
     context = {
         'form':form,
+        'json_data': json_data,
+        
     }
-    
+
     return render(request, 'inventario/ventas_create.html', context)
 
 

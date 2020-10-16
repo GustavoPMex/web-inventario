@@ -9,14 +9,22 @@
 
         <div class="modal-body">
 
-            <form role="form" action="{% url 'inventario:create-ventas' %}" method="post"  class="form-inline">
+            <form role="form" action="{% url 'inventario:create-ventas' %}" method="post" id="form-ventas"  class="form-inline">
 
                 {% csrf_token %} 
 
                 <div class="text-center col-12">
   
                     <div class="form-group mb-3 mx-auto">
-                        {{form}}
+                        {{form.articulo}}
+                    </div>
+
+                    <div class="form-group mb-3 mx-auto">
+                        {{form.vendido}}
+                    </div>
+
+                    <div id="error_inventario">
+
                     </div>
                 </div>
                 
@@ -32,3 +40,28 @@
     </div>
 </div>
 
+
+<script>
+    var form_ventas = document.getElementById('form-ventas'),
+        inventario = {{json_data | safe}};
+
+    function validarForm(e){
+
+        var id_articulo = document.getElementById('id_form_articulo').value,
+            vendido = document.getElementById('id_form_vendido').value;
+
+        for (const element in inventario){
+
+            let articulo_inventario = inventario[element],
+                stock = articulo_inventario.fields.cantidad;
+
+            if (id_articulo == articulo_inventario.pk && vendido > stock){
+                e.preventDefault();
+    
+            };  
+        };
+    };
+
+    form_ventas.addEventListener('submit', validarForm);
+   
+</script>
