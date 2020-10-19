@@ -39,7 +39,7 @@ class ArticuloModel(models.Model):
         verbose_name_plural = 'Articulos'
 
 class VentasModel(models.Model):
-    articulo = models.ForeignKey(ArticuloModel, on_delete=models.PROTECT)
+    articulo = models.ForeignKey(ArticuloModel, on_delete=models.CASCADE)
     vendido = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
 

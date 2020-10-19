@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
@@ -40,8 +40,10 @@ class InventarioModificaciones(ListView):
         history = ArticuloModel.history.all()
         return history
   
-def ventas_create(request):
+def ventas_create(request, id_ventas):
     
+    elemento = get_object_or_404(ArticuloModel, id=id_ventas)
+
     json_data = serializers.serialize('json', ArticuloModel.objects.all())
 
     if request.method == 'POST':
@@ -54,11 +56,12 @@ def ventas_create(request):
     else:
         form = VentasCreateForm()
 
-    form = VentasCreateForm(initial={'articulo':9})
+    form = VentasCreateForm(initial={'articulo':elemento})
 
     context = {
         'form':form,
         'json_data': json_data,
+        'elemento':elemento,
         
     }
 

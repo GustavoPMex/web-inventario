@@ -9,8 +9,7 @@
 
         <div class="modal-body">
 
-            <form role="form" action="{% url 'inventario:create-ventas' %}" method="post" id="form-ventas"  class="form-inline">
-
+            <form role="form" action="{% url 'inventario:create-ventas' elemento.id %}" method="post" id="form-ventas"  class="form-inline">
                 {% csrf_token %} 
 
                 <div class="text-center col-12">

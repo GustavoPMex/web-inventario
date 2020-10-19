@@ -9,7 +9,10 @@
         Modificaciones
     </a>
 
-    <a href="{% url 'inventario:list-ventas' %}" class="col-12 col-md-2 mx-1 mb-1 list-submenu">Ventas</a>
+    <a href="{% url 'inventario:list-ventas' %}" class="col-12 col-md-2 mx-1 mb-1 list-submenu
+        {% if  '/inventario/list_ventas/' in request.path %}submenu-activate{% endif %}">
+        Ventas
+    </a>
 
     <a href="{% url 'inventario:create' %}" class="col-12 col-md-2 mx-1 mb-1  list-submenu
         {% if  '/inventario/create/' in request.path %}submenu-activate{% endif %}">

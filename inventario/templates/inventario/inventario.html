@@ -47,7 +47,7 @@
                       <td>
                         <a onclick="return abrir_modal('{% url 'inventario:update' element.id %}')" href="#"><i class="fas fa-pen-square icon-table-up"></i></a>
                         <a onclick="return abrir_modal ('{% url 'inventario:delete' element.id %}')" href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
-                        <a onclick="return abrir_venta('{% url 'inventario:create-ventas' %}')" href="#"><i class="fas fa-shopping-cart icon-table-cart"></i></a>
+                        <a onclick="return abrir_venta('{% url 'inventario:create-ventas' element.id %}')" href="#"><i class="fas fa-shopping-cart icon-table-cart"></i></a>
                       </td>
                     </tr>
                   {% endfor %}
@@ -56,7 +56,7 @@
           </div>
         
         {% else %}
-          <p class="p-vacia">Sin garantias pendientes</p>
+          <p class="p-vacia">Sin articulos</p>
         {% endif %}
     </div>
 </section>
