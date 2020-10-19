@@ -34,11 +34,12 @@ class CategoriaCreateForm(forms.ModelForm):
         }
 
 class VentasCreateForm(forms.ModelForm):
+
     class Meta:
         model = VentasModel
         fields = ['articulo', 'vendido']
         widgets = {
-            'articulo':forms.Select(attrs={'class':'form-control mb-1','id':'id_form_articulo'}),
+            'articulo':forms.Select(attrs={'class':'form-control mb-1','id':'id_form_articulo','style':'pointer-events:none;'}),
             'vendido':forms.NumberInput(attrs={'class':'form-control', 'id':'id_form_vendido'})
         }
 

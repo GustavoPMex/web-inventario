@@ -82,7 +82,7 @@ def ventas_detail(sender, **kwargs):
     if element.id not in ids_ventas:
         # Comprobamos que lo vendido no exceda el stock
         if element.get_requisitos():
-            print(element.update_cantidad())
+            return element.update_cantidad() 
 
 
 pre_save.connect(ventas_detail, receiver)

@@ -24,7 +24,7 @@
                     </div>
 
                     <div id="error_inventario">
-
+                        
                     </div>
                 </div>
                 
@@ -43,25 +43,22 @@
 
 <script>
     var form_ventas = document.getElementById('form-ventas'),
+        contenedor = document.getElementById('error_inventario'),
         inventario = {{json_data | safe}};
 
-    function validarForm(e){
-
+    function validarForm(e){  
         var id_articulo = document.getElementById('id_form_articulo').value,
             vendido = document.getElementById('id_form_vendido').value;
-
         for (const element in inventario){
-
             let articulo_inventario = inventario[element],
                 stock = articulo_inventario.fields.cantidad;
-
             if (id_articulo == articulo_inventario.pk && vendido > stock){
+                contenedor.innerHTML = '<p class="error-mensaje"> Excede la cantidad del inventario </p>'
                 e.preventDefault();
-    
             };  
         };
     };
-
+    
     form_ventas.addEventListener('submit', validarForm);
-   
+
 </script>

@@ -54,6 +54,8 @@ def ventas_create(request):
     else:
         form = VentasCreateForm()
 
+    form = VentasCreateForm(initial={'articulo':9})
+
     context = {
         'form':form,
         'json_data': json_data,
