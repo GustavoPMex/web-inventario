@@ -13,38 +13,38 @@
 
         {% include 'garantia/includes/submenu_garantia.html' %}
 
-        {% include 'garantia/includes/filters_garantia_completas.html' %}
-        
         {% if object_list %}
         
-        <div class="row w-100 mb-5 mx-auto table-responsive">
-            <table class="table table-striped table-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Articulo</th>
-                    <th scope="col">Tecnico</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Accion</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for element in object_list %}
-                  <tr>
-                    <td>{{element.cliente}}</td>
-                    <td>{{element.articulo}}</td>
-                    <td>{{element.tecnico|title}}</td>
-                    <td>{{element.modificacion|date:"d/F/Y - G:i a"}}</td>
-                    <td>{{element.estado|title}}</td>
-                    <td>
-                      <a onclick="return abrir_modal ('{% url 'garantias:delete' element.id %}')" href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-        </div>
+          {% include 'garantia/includes/filters_garantia_completas.html' %}
+        
+          <div class="row w-100 mb-5 mx-auto table-responsive">
+              <table class="table table-striped table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">Cliente</th>
+                      <th scope="col">Articulo</th>
+                      <th scope="col">Tecnico</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Accion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for element in object_list %}
+                    <tr>
+                      <td>{{element.cliente}}</td>
+                      <td>{{element.articulo}}</td>
+                      <td>{{element.tecnico|title}}</td>
+                      <td>{{element.modificacion|date:"d/F/Y - G:i a"}}</td>
+                      <td>{{element.estado|title}}</td>
+                      <td>
+                        <a onclick="return abrir_modal ('{% url 'garantias:delete' element.id %}')" href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+          </div>
         {% else %}
           <p class="p-vacia">Sin garantias pendientes</p>
         {% endif %}

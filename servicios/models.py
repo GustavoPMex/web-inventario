@@ -9,7 +9,7 @@ class ServicioModel(models.Model):
         pendiente = ChoiceItem('pendiente', 'Pendiente')
         terminado = ChoiceItem('terminado', 'Terminado')
 
-    cliente = models.ForeignKey(ClienteModel, on_delete=models.PROTECT, default=None)
+    cliente = models.ForeignKey(ClienteModel, on_delete=models.CASCADE, default=None)
     descripcion = models.TextField()
     tecnico = models.ForeignKey(Profile, on_delete=models.PROTECT, default=None)
     estado = models.CharField(max_length=20, choices=Estado.choices, default=Estado.pendiente)

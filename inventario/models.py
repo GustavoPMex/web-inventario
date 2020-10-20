@@ -24,12 +24,12 @@ class CategoriaInvModel(models.Model):
 class ArticuloModel(models.Model):
     nombre = models.CharField(max_length=100)
     categoria = models.ManyToManyField(CategoriaInvModel)
-    proveedor = models.ForeignKey(ProveedorModel, on_delete=models.PROTECT)
+    proveedor = models.ForeignKey(ProveedorModel, on_delete=models.CASCADE)
     precio = models.DecimalField(max_digits=6, decimal_places=2)
     cantidad = models.IntegerField()
     creacion = models.DateTimeField(auto_now_add=True)
     modificacion = models.DateTimeField(auto_now=True)
-    history = HistoricalRecords()
+    history = HistoricalRecords(cascade_delete_history=True)
 
     def __str__(self):
         return self.nombre

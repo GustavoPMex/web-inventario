@@ -13,6 +13,13 @@
 
         <form method="post">
             {%csrf_token%}
+
+            <div class="form-group">
+                <label class="label-form">Cliente</label>
+                {{form.cliente}}
+                <p class="p-registration">Para crear un cliente, haz click <a class="link-others mt-3" href="{% url 'cliente:create' %}">aqui</a></p>
+            </div>
+
             <div class="form-group">
                 <label class="label-form">Equipo</label>
                 {{form.equipo}}
@@ -23,14 +30,9 @@
                 {{form.descripcion}}
             </div>
 
-            <div class="form-group">
-                <label class="label-form">Cliente</label>
-                {{form.cliente}}
-                <a class="link-others mt-3" href="{% url 'cliente:create' %}"><p class="p-registration">Crear cliente</p></a>
-            </div>
 
             <div class="form-group">
-                <label class="label-form">Personal</label>
+                <label class="label-form">Técnico asignado</label>
                 {{form.personal}}
             </div>
 

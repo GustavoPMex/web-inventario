@@ -17,10 +17,10 @@
             {%csrf_token%}
 
             <div class="form-group">
-                <div><a class="link-others mt-1"  onclick="return abrir_create_modal('{% url 'inventario:create_cat' %}')" href="#"><p class="p-registration">Crear categoria</p></a></div>
                 <label class="label-form">Seleccionar categoria(s)</label>
                 <div><small  class="mt-3 form-text">Presiona "Ctrl" para seleccionar multiples categorias</small ></div>
                 {{form.categoria}}
+                <div><p class="p-registration mt-1">Para crear una categoria, haz click <a class="link-others mt-1"  onclick="return abrir_create_modal('{% url 'inventario:create_cat' %}')" href="#">aqui</a></p></div>
             </div>
 
             <div class="form-group">

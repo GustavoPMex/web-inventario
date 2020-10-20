@@ -13,56 +13,59 @@
 
         {% include 'proveedor/includes/submenu_proveedores.html' %}
 
-        <div class="row w-100 mx-auto mb-5 justify-content-center">
-            <div class="col-12 col-lg-5  mt-5 mt-lg-2 text-center mt-3">
-                <form action="{% url 'proveedor:search' %}" method="GET">
-                    <div class="input-group text-center">
-                        <input type="search" class="form-control" placeholder="Ingresa proveedor" name="search">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary btn-search" type="submit">Buscar</button>
+        {% if object_list %}
+            <div class="row w-100 mx-auto mb-5 justify-content-center">
+                <div class="col-12 col-lg-5  mt-5 mt-lg-2 text-center mt-3">
+                    <form action="{% url 'proveedor:search' %}" method="GET">
+                        <div class="input-group text-center">
+                            <input type="search" class="form-control" placeholder="Ingresa proveedor" name="search">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary btn-search" type="submit">Buscar</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-        
-        <div class="row w-100 mb-5 mx-auto table-responsive">
-            <table class="table table-striped table-dark">
-                <thead>
-                  <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Telefono(s)</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Acción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                
-                {% for element in object_list %}
-                    <tr>
-                        <td>{{element.nombre}}</td>
-                        <td>{{element.descripcion}}</td>
-                        <td>{{element.telefono_uno}} 
-                            {% if element.telefono_dos %}
-                                y {{element.telefono_dos}}
-                            {% endif %}
-                        </td>
-                        <td>{{element.correo}}</td>
-                        <td>
-                            <!-- UPDATE -->
-                            <a onclick="return abrir_modal('{% url 'proveedor:update' element.id %}')" href="#"><i class="fas fa-pen-square icon-table-up"></i></a>
-                            <!-- DELETE -->
-                            <a onclick="return abrir_modal ('{% url 'proveedor:delete' element.id %}')" href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-                
-              </table>
             
-        </div>
-
+            <div class="row w-100 mb-5 mx-auto table-responsive">
+                <table class="table table-striped table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Telefono(s)</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    
+                    {% for element in object_list %}
+                        <tr>
+                            <td>{{element.nombre}}</td>
+                            <td>{{element.descripcion}}</td>
+                            <td>{{element.telefono_uno}} 
+                                {% if element.telefono_dos %}
+                                    y {{element.telefono_dos}}
+                                {% endif %}
+                            </td>
+                            <td>{{element.correo}}</td>
+                            <td>
+                                <!-- UPDATE -->
+                                <a onclick="return abrir_modal('{% url 'proveedor:update' element.id %}')" href="#"><i class="fas fa-pen-square icon-table-up"></i></a>
+                                <!-- DELETE -->
+                                <a onclick="return abrir_modal ('{% url 'proveedor:delete' element.id %}')" href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    
+                </table>
+                
+            </div>
+        {% else %}
+            <p class="p-vacia">Sin proveedores</p>
+        {% endif %}
     </div>
 </section>
 <hr class="m-0" />
