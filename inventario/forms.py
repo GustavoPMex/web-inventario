@@ -34,7 +34,6 @@ class CategoriaCreateForm(forms.ModelForm):
         }
 
 class VentasCreateForm(forms.ModelForm):
-
     class Meta:
         model = VentasModel
         fields = ['articulo', 'vendido']

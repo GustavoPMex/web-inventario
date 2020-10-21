@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Inventario{% endblock %}
+
+{% block content %}
+
+<section class="resume-section">
+    <div class="resume-section-content">
+        <h1 class="mb-5 h1-resume-section">
+            Categorias
+        </h1>
+
+        {% include 'inventario/includes/modal.html' %}
+        {% include 'inventario/includes/submenu_categoria.html' %}
+
+        {% if object_list %}
+
+          <div class="row w-100 mb-5 mx-auto table-responsive">
+              <table class="table table-striped table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col"># lista</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Fecha de creación</th>
+                      <th scope="col">Accion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  
+                  {% for element in  object_list %}
+                    <tr>
+                      <td scope="row">{{forloop.counter}}</td>
+                      <td>{{element.nombre}}</td>
+                      <td>{{element.creacion|date:"d/F/Y - G:i a"}}</td>
+                      <td>
+                        <a onclick="return abrir_modal('{% url 'inventario:update_cat' element.id %}')" href="#"><i class="fas fa-pen-square icon-table-up"></i></a>
+                        <a onclick="return abrir_modal ('{% url 'inventario:delete_cat' element.id %}')" href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+          </div>
+        
+        {% else %}
+          <p class="p-vacia">Sin categorias</p>
+        {% endif %}
+    </div>
+</section>
+<hr class="m-0" />
+{% endblock %}

@@ -28,11 +28,7 @@ class InventarioDelete(DeleteView):
     template_name = 'inventario/inventario_delete.html'
     success_url = reverse_lazy('inventario:index')
 
-class CategoriaCreate(CreateView):
-    model = CategoriaInvModel
-    form_class = CategoriaCreateForm
-    template_name = 'inventario/categoria_create.html'
-    success_url = reverse_lazy('inventario:create')
+
 
 class InventarioModificaciones(ListView):
     template_name = 'inventario/inventario_modificaciones.html'
@@ -71,3 +67,26 @@ def ventas_create(request, id_ventas):
 class ventas_list(ListView):
     model = VentasModel
     template_name = 'inventario/ventas.html'
+
+
+class categorias_list(ListView):
+    model = CategoriaInvModel
+    template_name = 'inventario/categorias_list.html'
+
+class CategoriaCreate(CreateView):
+    model = CategoriaInvModel
+    form_class = CategoriaCreateForm
+    template_name = 'inventario/categorias_create.html'
+    success_url = reverse_lazy('inventario:list_categorias')
+
+class CategoriaUpdate(UpdateView):
+    model = CategoriaInvModel
+    form_class = CategoriaCreateForm
+    template_name = 'inventario/categorias_update.html'
+    context_object_name = 'obj'
+    success_url = reverse_lazy('inventario:list_categorias')
+
+class CategoriaDelete(DeleteView):
+    model = CategoriaInvModel
+    template_name = 'inventario/includes/categorias_delete.html'
+    success_url = reverse_lazy('inventario:list_categorias')
