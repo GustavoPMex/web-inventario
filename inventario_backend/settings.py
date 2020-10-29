@@ -55,9 +55,14 @@ PROJECT_APPS = [
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
-LOGIN_REDIRECT_URL = 'home:index'
+LOGIN_REDIRECT_URL = 'profile'
 
 LOGOUT_REDIRECT_URL = 'login'
+
+LOGIN_EXEMPT_URLS = {
+    'logout',
+    
+}
 
 
 MIDDLEWARE = [
@@ -69,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
+    'registration.middleware.LoginRequiredMiddleWare'
 ]
 
 ROOT_URLCONF = 'inventario_backend.urls'

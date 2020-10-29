@@ -40,8 +40,10 @@
                     </li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger {% if '/proveedores/' in request.path %}select-menu{% endif %}"  href="{% url 'proveedor:index' %}">Proveedores</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger {% if '/clientes/' in request.path %}select-menu{% endif %}" href="{% url 'cliente:index' %}">Clientes</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/accounts/list_users/' or request.path == '/accounts/signup/' %}select-menu{% endif %}" href="{% url 'list_users' %}">Personal</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger {% if request.path == '/accounts/profile/' or request.path == '/accounts/profile_update/' %}select-menu{% endif %}" href="{% url 'profile' %}">Perfil actual</a></li>
+                    {% if request.user.is_superuser %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger {% if '/accounts/' in request.path and not '/profile/' in request.path %}select-menu{% endif %}" href="{% url 'list_users' %}">Personal</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger {% if '/profile/' in request.path %}select-menu{% endif %}" href="{% url 'profile' %}">Perfil actual</a></li>
                 </ul>
             </div>
         </nav>
