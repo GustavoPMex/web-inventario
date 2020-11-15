@@ -7,8 +7,10 @@
         {% if '/servicios/terminados/' in request.path or '/servicios/search_terminados' in request.path %}submenu-activate{% endif %}">
         Terminados
     </a>
-    <a href="{% url 'servicios:create' %}" class="col-12 col-md-3 mx-1 mb-1  list-submenu
-        {% if request.path == '/servicios/create/' %}submenu-activate{% endif %}">
-        Agregar
-    </a>
+    {% if request.user.is_superuser %}
+        <a href="{% url 'servicios:create' %}" class="col-12 col-md-3 mx-1 mb-1  list-submenu
+            {% if request.path == '/servicios/create/' %}submenu-activate{% endif %}">
+            Agregar
+        </a>
+    {% endif %}
 </div>
