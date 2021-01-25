@@ -1,25 +1,31 @@
+from django.http import HttpResponseNotAllowed
+from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.list import ListView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.views.generic.base import TemplateView
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django import forms
 from .forms import UserCreationFormWithEmail, ProfileForm, EmailForm
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.contrib.auth.models import User
 
-@method_decorator(login_required, name='dispatch')
+class StaffRequiredMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_superuser:
+            return super(StaffRequiredMixin, self).dispatch(request, *args, **kwargs)
+
+        return HttpResponseNotAllowed(['GET', 'POST'])
+
 class ProfileView(TemplateView):
     template_name = 'registration/profile.html'
 
-@method_decorator(login_required, name='dispatch')
-class SignUpView(CreateView):
+    
+class SignUpView(StaffRequiredMixin, CreateView):
     form_class = UserCreationFormWithEmail
     template_name = 'registration/signup.html'
-    success_url = reverse_lazy('home:index')
+    success_url = reverse_lazy('list_users')
 
     def get_form(self, form_class=None):
         form = super(SignUpView, self).get_form() 
@@ -30,7 +36,7 @@ class SignUpView(CreateView):
         form.fields['password2'].widget = forms.PasswordInput(attrs={'class':'form-control','placeholder':'Repite la contraseña'})
         return form 
 
-@method_decorator(login_required, name='dispatch')
+
 class ProfileUpdate(UpdateView):
     form_class = ProfileForm
     success_url = reverse_lazy('profile')
@@ -40,7 +46,11 @@ class ProfileUpdate(UpdateView):
         profile, created = Profile.objects.get_or_create(usuario=self.request.user)
         return profile
 
-@method_decorator(login_required, name='dispatch')
+class ProfileDelete(StaffRequiredMixin, DeleteView):
+    model = Profile
+    template_name = 'registration/profile_delete.html'
+    success_url = reverse_lazy('list_users')
+ 
 class EmailUpdate(UpdateView):
     form_class = EmailForm
     success_url = reverse_lazy('profile_update')
@@ -55,12 +65,12 @@ class EmailUpdate(UpdateView):
         form.fields['email'].widget = forms.EmailInput(attrs={'class':'form-control','placeholder':'Email'})
         return form
 
-class ListUsers(ListView):
+class ListUsers(StaffRequiredMixin, ListView):
     model = Profile
     template_name = 'registration/list_users.html'
 
 
-class SearchView(ListView):
+class SearchView(StaffRequiredMixin, ListView):
     model = Profile
     template_name = 'registration/search_list.html'
     context_object_name = 'all_search_results'

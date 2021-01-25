@@ -28,10 +28,6 @@
                 {% endif %}
             </div>
             
-            <!-- Formulario -->
-            <div class="form-group">
-                <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
-            </div>
 
             <div class="form-group mt-5">
                 <label class="label-form">Correo</label>
@@ -41,6 +37,13 @@
             <div class="form-group">
                 <a onclick="return abrir_modal('{% url 'profile_email'  %}')" class="link-registration" href="#"><p class="p-registration">Cambiar correo</p></a>
             </div>
+
+
+            <div class="form-group">
+                <label class="label-form">Foto de perfil</label>
+                <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
+            </div>
+
 
             <div class="form-group mt-5">
                 <label class="label-form">Dirección</label>

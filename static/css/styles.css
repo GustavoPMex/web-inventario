@@ -10116,7 +10116,7 @@ p.lead {
   margin-right: 0;
 }
 .social-icons .social-icon:hover {
-  background-color: #495057;
+  background-color: #3b5998;
 }
 
 .dev-icons {
@@ -10360,6 +10360,7 @@ section.resume-section .resume-section-content {
 
 .p-registration{
   font-size: 1.3em;
+  margin-bottom: 2em;
 }
 
 .menu-select{
@@ -10439,3 +10440,12 @@ input[type="checkbox"]{
   }
 }
 
+.error-mensaje{
+  color: rgb(255, 31, 31);
+  font-size: 1.2em;
+  text-shadow: rgba(0, 0, 0, .9)0px 2px 3px;
+}
+
+.desactivar-puntero{
+  pointer-events: none;
+}

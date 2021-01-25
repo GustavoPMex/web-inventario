@@ -3,12 +3,16 @@
         {% if '/taller/pendientes/' in request.path %}submenu-activate{% endif %}">
         Pendientes
     </a>
+    
     <a href="{% url 'taller:terminados' %}" class="col-12 col-md-3 mx-1 mb-1  list-submenu
         {% if '/taller/terminados/' in request.path %}submenu-activate{% endif %}">
         Terminados
     </a>
-    <a href="{% url 'taller:create' %}" class="col-12 col-md-3 mx-1 mb-1  list-submenu
-        {% if '/taller/create/' in request.path %}submenu-activate{% endif %}">
-        Agregar
-    </a>
+
+    {% if request.user.is_superuser %}
+        <a href="{% url 'taller:create' %}" class="col-12 col-md-3 mx-1 mb-1  list-submenu
+            {% if '/taller/create/' in request.path %}submenu-activate{% endif %}">
+            Agregar
+        </a>
+    {% endif %}
 </div>

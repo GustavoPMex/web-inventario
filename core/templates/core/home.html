@@ -32,11 +32,19 @@
                 </div>
             </a>
 
-            <a class="a-content-div free-div mx-auto mb-3 col-12 col-md-3"  href="#">
+            <a class="a-content-div {% if not servicios %}free-div{% endif %} mx-auto mb-3 col-12 col-md-3"  href="{% url 'servicios:index' %}">
                 <div class="div-content-a">
                     <i class="fas fa-laptop-house icon-content-a"></i>
                     <p class="p-content-a mt-3">Servicios</p>
-                    <p class="p-content-a">Sin pendientes</p>
+                    {% if servicios %}
+                        {% if servicios == 1 %}
+                            <p class="p-content-a">{{servicios.count}} Pendiente</p>
+                        {% else %}
+                            <p class="p-content-a">{{servicios.count}} Pendientes</p>
+                        {% endif %}
+                    {% else %}
+                        <p class="p-content-a">Sin pendientes</p>
+                    {% endif %}
                 </div>
             </a>
 

@@ -1,4 +1,4 @@
 <div class="row w-100 mb-5 mx-auto justify-content-center">
-    <a href="{% url 'list_users' %}" class="col-12 col-md-3 mx-1 mb-1  {% if request.path == '/accounts/list_users/' %}submenu-activate{% endif %}   list-submenu">Lista</a>
-    <a href="{% url 'signup' %}" class="col-12 col-md-3 mx-1 mb-1  {% if request.path == '/accounts/signup/' %}submenu-activate{% endif %} list-submenu">Agregar</a>
+    <a href="{% url 'list_users' %}" class="col-12 col-md-3 mx-1 mb-1  {% if '/list_users/' in request.path %}submenu-activate{% endif %}   list-submenu">Lista</a>
+    <a href="{% url 'signup' %}" class="col-12 col-md-3 mx-1 mb-1  {% if '/signup/' in request.path %}submenu-activate{% endif %} list-submenu">Agregar</a>
 </div>

@@ -1,0 +1,63 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ingresa los datos correctamente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+
+            <form role="form" action="{% url 'inventario:create-ventas' elemento.id %}" method="post" id="form-ventas"  class="form-inline">
+                {% csrf_token %} 
+
+                <div class="text-center col-12">
+  
+                    <div class="form-group mb-3 mx-auto">
+                        {{form.articulo}}
+                    </div>
+
+                    <div class="form-group mb-3 mx-auto">
+                        {{form.vendido}}
+                    </div>
+
+                    <div id="error_inventario">
+                        
+                    </div>
+                </div>
+                
+                <div class="modal-footer mx-auto">
+
+                    <button type="submit" class="btn btn-success">Crear</button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var form_ventas = document.getElementById('form-ventas'),
+        contenedor = document.getElementById('error_inventario'),
+        inventario = {{json_data | safe}};
+
+    function validarForm(e){  
+        var id_articulo = document.getElementById('id_form_articulo').value,
+            vendido = document.getElementById('id_form_vendido').value;
+        for (const element in inventario){
+            let articulo_inventario = inventario[element],
+                stock = articulo_inventario.fields.cantidad;
+            if (id_articulo == articulo_inventario.pk && vendido > stock){
+                contenedor.innerHTML = '<p class="error-mensaje"> Excede la cantidad del inventario </p>'
+                e.preventDefault();
+            };  
+        };
+    };
+    
+    form_ventas.addEventListener('submit', validarForm);
+
+</script>
