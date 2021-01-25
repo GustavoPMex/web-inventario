@@ -1,9 +1,0 @@
-<div class="row w-100 mb-5 mx-auto justify-content-center">
-    <a href="{% url 'cliente:index' %}" class="col-12 col-md-3 mx-1 mb-1 list-submenu
-        {% if request.path == '/clientes/' or 'search' in request.path  %}
-            submenu-activate
-        {% endif %}">
-        Lista
-    </a>
-    <a href="{% url 'cliente:create' %}" class="col-12 col-md-3 mx-1 mb-1  list-submenu {% if request.path == '/clientes/create/' %}submenu-activate{% endif %}">Agregar</a>
-</div>
