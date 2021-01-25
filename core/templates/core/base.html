@@ -75,7 +75,6 @@
             axios.defaults.xsrfHeaderName = "X-CSRFToken";
             axios.defaults.xsrfCookieName = "csrftoken";
     
-<<<<<<< HEAD
             new Vue({
               delimiters: ['[[', ']]'],
               el: '#app',
@@ -113,13 +112,11 @@
         <script>
             function abrir_modal(url){
                 $('#modal_update').load(url, function(){
-=======
                 return false;
             };
 
             function abrir_create_modal(url){
                 $('#modal_create').load(url, function(){
->>>>>>> 5439550
                     $(this).modal({
                         backdrop: 'static',
                         keyboard: false
@@ -130,10 +127,6 @@
                 return false;
             };
 
-<<<<<<< HEAD
-  
-
-=======
             function abrir_venta(url){
                 $('#modal_venta').load(url, function(){
                     $(this).modal({
@@ -147,7 +140,6 @@
             };
         </script>
         
->>>>>>> 5439550
 
  
     </body>

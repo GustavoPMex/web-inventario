@@ -2,19 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
-<<<<<<< HEAD
-from .models import ArticuloModel, CategoriaInvModel
-from .forms import InventarioCreateForm, CategoriaCreateForm
-from .serializers import CategoriaSerializer
-
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-=======
 from .models import ArticuloModel, CategoriaInvModel, VentasModel
 from .forms import InventarioCreateForm, CategoriaCreateForm, InventarioUpdateForm, VentasCreateForm
 from django.core import serializers
->>>>>>> 5439550
 
 class InventarioList(ListView):
     model = ArticuloModel
@@ -26,24 +16,6 @@ class InventarioCreate(CreateView):
     template_name = 'inventario/inventario_create.html'
     success_url = reverse_lazy('inventario:index')
 
-<<<<<<< HEAD
-
-@api_view(['GET', 'POST'])
-def categoria_list(request):
-
-    if request.method == 'GET':
-        categorias_list = CategoriaInvModel.objects.all()
-        serializer_list = CategoriaSerializer(categorias_list, many=True)
-        return Response(serializer_list.data)
-
-    elif request.method == 'POST':
-        serializer_list = CategoriaSerializer(data=request.data)
-        if serializer_list.is_valid():
-            serializer_list.save()
-            return Response(serializer_list.data, status=status.HTTP_201_CREATED)
-        return Response(serializer_list.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-=======
 class InventarioUpdate(UpdateView):
     model = ArticuloModel
     form_class = InventarioUpdateForm
@@ -118,4 +90,3 @@ class CategoriaDelete(DeleteView):
     model = CategoriaInvModel
     template_name = 'inventario/includes/categorias_delete.html'
     success_url = reverse_lazy('inventario:list_categorias')
->>>>>>> 5439550
