@@ -1,0 +1,16 @@
+<div class="row w-100 mb-5 mx-auto justify-content-center">
+    <a href="{% url 'servicios:index' %}" class="col-12 col-md-3 mx-1 mb-1 list-submenu
+        {% if '/servicios/pendientes/' in request.path or '/servicios/search_pendientes' in request.path %}submenu-activate{% endif %} ">
+        Pendientes
+    </a>
+    <a href="{% url 'servicios:terminados' %}" class="col-12 col-md-3 mx-1 mb-1  list-submenu
+        {% if '/servicios/terminados/' in request.path or '/servicios/search_terminados' in request.path %}submenu-activate{% endif %}">
+        Terminados
+    </a>
+    {% if request.user.is_superuser %}
+        <a href="{% url 'servicios:create' %}" class="col-12 col-md-3 mx-1 mb-1  list-submenu
+            {% if request.path == '/servicios/create/' %}submenu-activate{% endif %}">
+            Agregar
+        </a>
+    {% endif %}
+</div>

@@ -1,0 +1,68 @@
+{% extends 'core/base.html' %}
+
+{%load static %}
+
+{% block title %}Perfil{% endblock %}
+
+
+{% block content %}
+
+{% include 'registration/includes/modal_registration.html'  %}
+
+<section class="resume-section">
+    <div class="resume-section-content">
+        <h1 class="mb-5 h1-resume-section">
+            Actualizar Perfil
+        </h1>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %} 
+
+            <!-- Previa del avatar -->
+            <div class="form-group">
+                {% if request.user.profile.avatar %}
+                    <img src="{{request.user.profile.avatar.url}}" class="img-fluid">
+                    <p class="mt-1 mb-5 p-checkbox">¿Borrar? <input type="checkbox" id="avatar-clear" name="avatar-clear" /></p>
+                {% else %}
+                    <img src="{% static 'assets/img/original.jpg' %}" class="img-fluid">
+                {% endif %}
+            </div>
+            
+
+            <div class="form-group mt-5">
+                <label class="label-form">Correo</label>
+                <input type="email" value="{{request.user.email}}" class="form-control" readonly> 
+            </div>
+
+            <div class="form-group">
+                <a onclick="return abrir_modal('{% url 'profile_email'  %}')" class="link-registration" href="#"><p class="p-registration">Cambiar correo</p></a>
+            </div>
+
+
+            <div class="form-group">
+                <label class="label-form">Foto de perfil</label>
+                <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
+            </div>
+
+
+            <div class="form-group mt-5">
+                <label class="label-form">Dirección</label>
+                {{form.direccion}}
+            </div>
+
+            <div class="form-group mt-5">
+                <label class="label-form">Telefono</label>
+                {{form.telefono}}
+            </div>
+
+            
+            <input type="submit" class="btn btn-primary btn-block mt-5" value="Actualizar">
+
+            <a href="{% url 'password_change' %}" class="btn btn-info btn-block mt-4">Cambiar contraseña</a>
+
+            <a class="btn btn-danger btn-block mt-4" href="{% url 'profile' %}">Regresar</a>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

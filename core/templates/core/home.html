@@ -1,0 +1,79 @@
+{% extends 'core/base.html' %} 
+
+{% block title %} Inicio {% endblock %}
+
+{% block content %}
+<section class="resume-section">
+    <div class="resume-section-content">
+        <h1 class="mb-5 h1-resume-section">
+            Bienvenido
+            <span class="text-primary">{{request.user.profile.usuario}}</span>
+        </h1>
+
+        <div class="subheading w-100 mb-5">
+            <p class="p-subheading">Mantente al día</p>
+        </div>
+        
+        <div class="row w-100 mb-5 mx-auto">
+
+            <a class="a-content-div {% if not equipos  %}free-div{% endif %} mx-auto mb-3 col-12 col-md-3"  href="{% url 'taller:index' %}">
+                <div class="div-content-a">
+                    <i class="fas fa-laptop icon-content-a"></i>
+                    <p class="p-content-a mt-3">Equipos</p>
+                    {% if equipos %}
+                        {% if equipos.count == 1 %}
+                            <p class="p-content-a mt-3">{{equipos.count}} Pendiente</p>
+                        {% else %}
+                            <p class="p-content-a mt-3">{{equipos.count}} Pendientes</p>
+                        {% endif %}
+                    {% else %}
+                        <p class="p-content-a">Sin pendientes</p>
+                    {% endif %}
+                </div>
+            </a>
+
+            <a class="a-content-div {% if not servicios %}free-div{% endif %} mx-auto mb-3 col-12 col-md-3"  href="{% url 'servicios:index' %}">
+                <div class="div-content-a">
+                    <i class="fas fa-laptop-house icon-content-a"></i>
+                    <p class="p-content-a mt-3">Servicios</p>
+                    {% if servicios %}
+                        {% if servicios == 1 %}
+                            <p class="p-content-a">{{servicios.count}} Pendiente</p>
+                        {% else %}
+                            <p class="p-content-a">{{servicios.count}} Pendientes</p>
+                        {% endif %}
+                    {% else %}
+                        <p class="p-content-a">Sin pendientes</p>
+                    {% endif %}
+                </div>
+            </a>
+
+            <a class="a-content-div  {% if not garantias %}free-div{% endif %}  mx-auto mb-3 col-12  col-md-3"  href="{% url 'garantias:index' %}">
+                <div class="div-content-a">
+                    <i class="fab fa-usb icon-content-a"></i>
+                    <p class="p-content-a mt-3">Garantias</p>
+                    {% if garantias %}
+                        {% if garantias.count == 1 %}
+                            <p class="p-content-a mt-3">{{garantias.count}} Pendiente</p>
+                        {% else %}
+                            <p class="p-content-a mt-3">{{garantias.count}} Pendientes</p>
+                        {% endif %}
+                    {% else %}
+                        <p class="p-content-a">Sin pendientes</p>
+                    {% endif %}
+                </div>
+            </a>
+            
+        </div>
+
+        <div class="social-icons">
+            <div class="subheading w-100 mb-5">
+                <p class="p-subheading">Manten actualizadas tus redes</p>
+            </div>
+
+            <a class="social-icon" target="_blank" href="#"><i class="fab fa-facebook-f icon-social-icons"></i></a>
+        </div>
+    </div>
+</section>
+<hr class="m-0" />
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Personal{% endblock %}
+
+{% block content %}
+<section class="resume-section">
+    <div class="resume-section-content">
+        <h1 class="mb-5 h1-resume-section">
+            Personal
+        </h1>
+
+        {% include 'registration/includes/modal_registration.html'  %}
+
+        {% include 'registration/includes/submenu_registration.html' %}
+
+        {% if object_list %}
+            <div class="row w-100 mx-auto mb-5 justify-content-center">
+                <div class="col-12 col-lg-5  mt-5 mt-lg-2 text-center mt-3">
+                    <form action="{% url 'search_p' %}" method="GET">
+                        <div class="input-group text-center">
+                            <input type="search" class="form-control" placeholder="Ingresa un usuario" name="search">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary btn-search" type="submit">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="row w-100 mb-5 mx-auto table-responsive">
+                <table class="table table-striped table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for element in object_list %}
+                    <tr>
+                        <td>{{element.usuario|title}}</td>
+                        <td>{{element.usuario.email}}</td>
+                        <td>
+                            {% if element.direccion %}
+                                {{element.direccion}}
+                            {% else %}
+                                <p>Sin dato</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if element.telefono %}
+                                {{element.telefono}}
+                            {% else %}
+                                <p>Sin dato</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a onclick="return abrir_modal('{% url 'delete_users' element.id %}')" href="#"><i class="fas fa-trash-alt icon-table-del"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="p-vacia">Sin usuarios</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<hr class="m-0" />
+{% endblock %}
+

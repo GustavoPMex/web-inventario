@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Perfil actual{% endblock %}
+
+{% block content %}
+<section class="resume-section">
+    <div class="resume-section-content">
+        <div class="row w-100 mx-auto justify-content-center">
+            {% if request.user.profile.avatar %}
+                <div class="perfil-bg">
+                    <img class="perfil-photo" src="{{request.user.profile.avatar.url}}" alt="">
+                </div>
+            {% else %}
+                <div class="perfil-bg">
+                    <img class="perfil-photo" src="{% static 'assets/img/original.jpg' %}">
+                </div>
+            {% endif %}
+
+            <div class="perfil-text">
+                <p class="perfil-title">Usuario</p>
+                <p class="perfil-p">{{request.user.profile.usuario|title}}</p>
+
+                
+                <p class="perfil-title">Email</p>
+                <p class="perfil-p">{{request.user.email}}</p>
+
+                <p class="perfil-title">Dirección</p>
+                {% if request.user.profile.direccion %}
+                    <p class="perfil-p">{{request.user.profile.direccion}}</p>
+                {% else %}
+                    <p class="perfil-p">Sin datos</p>
+                {% endif %}
+
+                <p class="perfil-title">Telefono</p>
+                {% if request.user.profile.telefono %}
+                    <p class="perfil-p">{{request.user.profile.telefono}}</p>
+                {% else  %}
+                    <p class="perfil-p">Sin datos</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="mt-5 content-btn">
+            <a class="perfil-btn btn btn-success" href="{% url 'profile_update' %}" >Editar</a>
+            <a class="perfil-btn btn btn-danger" href="{% url 'logout' %}">Cerrar sesión</a>
+        </div>
+    </div>
+</section>
+<hr class="m-0" />
+{% endblock %}

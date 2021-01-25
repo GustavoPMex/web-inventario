@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Agregar equipo{% endblock %}
+
+{% block content %}
+<section class="resume-section">
+    <div class="resume-section-content">
+        <h1 class="mb-5 h1-resume-section">
+            Taller
+        </h1>
+
+        {% include 'taller/includes/submenu_taller.html' %}
+
+        <form method="post">
+            {%csrf_token%}
+
+            <div class="form-group">
+                <label class="label-form">Cliente</label>
+                {{form.cliente}}
+                <p class="p-registration">Para crear un cliente, haz click <a class="link-others mt-3" href="{% url 'cliente:create' %}">aqui</a></p>
+            </div>
+
+            <div class="form-group">
+                <label class="label-form">Equipo</label>
+                {{form.equipo}}
+            </div>
+
+            <div class="form-group">
+                <label class="label-form">Descripción</label>
+                {{form.descripcion}}
+            </div>
+
+
+            <div class="form-group">
+                <label class="label-form">Técnico asignado</label>
+                {{form.personal}}
+            </div>
+
+            <div class="form-group">
+                <label class="label-form">Estado</label>
+                {{form.estado}} 
+            </div>
+
+            <button type="submit" class="btn btn-success btn-form">Crear</button>
+        </form>
+    </div>
+</section>
+<hr class="m-0" />
+{% endblock %}

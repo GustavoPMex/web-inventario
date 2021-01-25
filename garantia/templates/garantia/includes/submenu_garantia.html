@@ -1,0 +1,15 @@
+
+<div class="row w-100 mb-5 mx-auto justify-content-center">
+    <a href="{% url 'garantias:index' %}" class="col-12 col-md-3 mx-1 mb-1 {% if '/garantias/pendientes/' in request.path %}submenu-activate{% endif %} list-submenu">
+        Pendientes
+    </a>
+
+    <a href="{% url 'garantias:completas' %}" class="col-12 col-md-3 mx-1 mb-1 {% if '/garantias/completas/' in request.path %}submenu-activate{% endif %}  list-submenu">
+        Entregados
+    </a>
+
+    <a href="{% url 'garantias:create' %}" 
+       class="col-12 col-md-3 mx-1 mb-1 {% if request.path == '/garantias/create/' %}submenu-activate{% endif %}  list-submenu">
+       Agregar
+    </a>
+</div>
