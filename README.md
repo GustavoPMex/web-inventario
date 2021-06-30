@@ -21,8 +21,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="#">
-    <img src="https://i.imgur.com/RQ7QMqV.jpg" alt="Logo" width="200" height="200">
+  <a href="https://github.com/GustavoPMex/web-inventario/">
+    <img src="https://i.imgur.com/b67v87R.png" alt="Logo" width="200" height="200">
   </a>
 
   <h3 align="center">Proyecto - página inventario </h3>
